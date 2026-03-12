@@ -177,6 +177,137 @@
         .price-badge-round { display: inline-block; background: var(--primary); color: var(--white); padding: 8px 25px; border-radius: 50px; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
         .card-desc { text-align: center; margin-bottom: 40px; font-size: 1.05rem; color: #475569; max-width: 800px; margin-left: auto; margin-right: auto; }
 
+        /* 3bis. AVIS STYLE AIRBNB (SWIPE MOBILE) */
+        .ab-reviews-block { margin: 10px 0 40px; }
+        .ab-reviews-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #222;
+            margin: 0 0 14px;
+            letter-spacing: -0.2px;
+        }
+
+        .ab-reviews-track {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding: 2px 4px 14px;
+            margin: 0 -4px;
+        }
+        .ab-reviews-track::-webkit-scrollbar { height: 8px; }
+        .ab-reviews-track::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 999px; }
+        .ab-reviews-track::-webkit-scrollbar-track { background: transparent; }
+
+        .ab-review {
+            flex: 0 0 86%;
+            scroll-snap-align: start;
+            background: #fff;
+            border: 1px solid #e6e6e6;
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.10);
+            color: #222;
+        }
+
+        .ab-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+        .ab-avatar {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: #222;
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 0.2px;
+            flex: 0 0 auto;
+        }
+        .ab-person { min-width: 0; }
+        .ab-name { font-size: 16px; font-weight: 700; line-height: 20px; margin: 0; color: #222; }
+        .ab-years { font-size: 14px; color: #717171; margin-top: 2px; }
+
+        .ab-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #222;
+        }
+        .ab-stars {
+            display: inline-flex;
+            gap: 2px;
+            color: #222; /* Airbnb = étoiles noires */
+            font-size: 12px;
+            transform: translateY(-1px);
+        }
+        .ab-dot { color: #222; font-weight: 700; margin: 0 2px; }
+        .ab-meta strong { font-weight: 700; }
+        .ab-muted { color: #717171; font-weight: 400; }
+
+        .ab-text {
+            font-size: 16px;
+            line-height: 24px;
+            color: #222;
+            white-space: pre-line;
+        }
+
+        /* Clamp + bouton "Afficher plus" type Airbnb */
+        .ab-text.ab-clamp {
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .ab-more {
+            margin-top: 10px;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            color: #222;
+            font-weight: 700;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+        .ab-review.expanded .ab-text.ab-clamp {
+            display: block;
+            -webkit-line-clamp: unset;
+            overflow: visible;
+        }
+
+        .ab-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .ab-dotbtn {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            border: none;
+            background: rgba(0,0,0,0.18);
+            cursor: pointer;
+        }
+        .ab-dotbtn.active { background: rgba(0,0,0,0.65); }
+
+        /* Desktop: grille 3 colonnes (plus “Airbnb desktop”) + pas de dots */
+        @media (min-width: 768px) {
+            .ab-reviews-track {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                overflow: visible;
+                scroll-snap-type: none;
+                padding: 0;
+                margin: 0;
+            }
+            .ab-review { flex: auto; box-shadow: none; }
+            .ab-dots { display: none; }
+        }
+
         /* 4. Grille 12 équipements */
         .amenities-grid-12 { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-bottom: 40px; }
         .am-box { border: 1px solid #e2e8f0; background: #f8fafc; border-radius: 4px; padding: 12px; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--primary); font-weight: 500; }
@@ -313,6 +444,86 @@
                     
                     <p class="card-desc">Location d'un appartement F2 meublé et entièrement équipé, avec une piscine chauffée et couverte, sans vis-à-vis. In sha Allah.</p>
 
+                    <!-- AVIS AIRBNB - CARTE 1 (SWIPE MOBILE) -->
+                    <div class="ab-reviews-block">
+                        <div class="ab-reviews-title">Commentaires</div>
+
+                        <div class="ab-reviews-track" data-dots="dots-card1">
+                            <!-- Inès -->
+                            <article class="ab-review">
+                                <div class="ab-head">
+                                    <div class="ab-avatar">I</div>
+                                    <div class="ab-person">
+                                        <p class="ab-name">Inès</p>
+                                        <div class="ab-years">11 ans sur Airbnb</div>
+                                    </div>
+                                </div>
+                                <div class="ab-meta">
+                                    <span class="ab-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                                    <span><strong>Évaluation 5 étoiles</strong></span>
+                                    <span class="ab-dot">·</span>
+                                    <span><strong>Il y a 2 semaines</strong></span>
+                                    <span class="ab-dot">·</span>
+                                    <span class="ab-muted">Séjour de quelques nuits</span>
+                                </div>
+                                <p class="ab-text ab-clamp">Excellent rapport qualité-prix, au-delà de nos attentes. Le logement est propre, confortable et très agréable. La piscine intérieure chauffée est un vrai plus et a fait le bonheur de mes enfants.
+L’hôte est très accueillant et disponible. Nous avons passé un magnifique séjour et repartons avec de très beaux souvenirs. Merci encore !!!</p>
+                                <button class="ab-more" type="button">Afficher plus</button>
+                            </article>
+
+                            <!-- Kahina -->
+                            <article class="ab-review">
+                                <div class="ab-head">
+                                    <div class="ab-avatar">K</div>
+                                    <div class="ab-person">
+                                        <p class="ab-name">Kahina</p>
+                                        <div class="ab-years">5 ans sur Airbnb</div>
+                                    </div>
+                                </div>
+                                <div class="ab-meta">
+                                    <span class="ab-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                                    <span><strong>Évaluation 5 étoiles</strong></span>
+                                    <span class="ab-dot">·</span>
+                                    <span><strong>décembre 2025</strong></span>
+                                    <span class="ab-dot">·</span>
+                                    <span class="ab-muted">Séjour de quelques nuits</span>
+                                </div>
+                                <p class="ab-text ab-clamp">Un couple très accueillant, disponible et bienveillant ma sha Allah,
+Logement largement mieux en vrai que sur les photos.
+Tout est très bien pensé et agencé pour qu'on ne manque de rien.
+Les matériaux utilisés sont très qualitatifs. 
+La température de la piscine est extraordinaire... 34 degrés. Elle est grande et il y a toilettes, douche et jeux pour enfants/débutants
+C'est une super adresse pour se reposer et profiter en famille</p>
+                                <button class="ab-more" type="button">Afficher plus</button>
+                            </article>
+
+                            <!-- Houcine -->
+                            <article class="ab-review">
+                                <div class="ab-head">
+                                    <div class="ab-avatar">H</div>
+                                    <div class="ab-person">
+                                        <p class="ab-name">Houcine</p>
+                                        <div class="ab-years">11 ans sur Airbnb</div>
+                                    </div>
+                                </div>
+                                <div class="ab-meta">
+                                    <span class="ab-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                                    <span><strong>Évaluation 5 étoiles</strong></span>
+                                    <span class="ab-dot">·</span>
+                                    <span><strong>décembre 2025</strong></span>
+                                    <span class="ab-dot">·</span>
+                                    <span class="ab-muted">Séjour de quelques nuits</span>
+                                </div>
+                                <p class="ab-text ab-clamp">Logement parfaitement conforme à l’annonce, avec une piscine impeccable qui a fait le bonheur des enfants.
+Un grand merci à Souleymane, un hôte exceptionnel, attentionné et disponible tout au long du séjour (prises de nouvelles régulières, frigo rempli avant notre arrivée…).
+Une expérience au top, vous pouvez réserver les yeux fermés, votre seule problématique sera d’annoncer aux enfants si vous en avez qu’il est l’heure de quitter l’appart de Souleymane ! :)</p>
+                                <button class="ab-more" type="button">Afficher plus</button>
+                            </article>
+                        </div>
+
+                        <div class="ab-dots" id="dots-card1"></div>
+                    </div>
+
                     <div class="amenities-grid-12">
                         <div class="am-box"><i class="fas fa-door-open"></i> 1 Cuisine, chambre, salon</div>
                         <div class="am-box"><i class="fas fa-bath"></i> 2 Salles de bain</div>
@@ -370,6 +581,84 @@
                     </div>
                     
                     <p class="card-desc">Location d'un appartement F2 meublé et entièrement équipé avec une cour,sans aucun vis-à-vis et ensoleillé. sous réserve de disponibilité. In sha Allah.</p>
+
+                    <!-- AVIS AIRBNB - CARTE 2 (SWIPE MOBILE) -->
+                    <div class="ab-reviews-block">
+                        <div class="ab-reviews-title">Commentaires</div>
+
+                        <div class="ab-reviews-track" data-dots="dots-card2">
+                            <!-- Mohamed-Ali -->
+                            <article class="ab-review">
+                                <div class="ab-head">
+                                    <div class="ab-avatar">M</div>
+                                    <div class="ab-person">
+                                        <p class="ab-name">Mohamed-Ali</p>
+                                        <div class="ab-years">4 ans sur Airbnb</div>
+                                    </div>
+                                </div>
+                                <div class="ab-meta">
+                                    <span class="ab-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                                    <span><strong>Évaluation 5 étoiles</strong></span>
+                                    <span class="ab-dot">·</span>
+                                    <span><strong>décembre 2025</strong></span>
+                                    <span class="ab-dot">·</span>
+                                    <span class="ab-muted">Séjour d'une nuit</span>
+                                </div>
+                                <p class="ab-text ab-clamp">J’ai honnêtement été très surpris par la qualité de l’appartement ayant fait plusieurs appartements sur Alger, il est l’appartement le plus moderne le mieux chauffé avec un des plus beaux agencement que j’ai pu voir</p>
+                                <button class="ab-more" type="button">Afficher plus</button>
+                            </article>
+
+                            <!-- Nordine -->
+                            <article class="ab-review">
+                                <div class="ab-head">
+                                    <div class="ab-avatar">N</div>
+                                    <div class="ab-person">
+                                        <p class="ab-name">Nordine</p>
+                                        <div class="ab-years">5 ans sur Airbnb</div>
+                                    </div>
+                                </div>
+                                <div class="ab-meta">
+                                    <span class="ab-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                                    <span><strong>Évaluation 5 étoiles</strong></span>
+                                    <span class="ab-dot">·</span>
+                                    <span><strong>Il y a 5 jours</strong></span>
+                                    <span class="ab-dot">·</span>
+                                    <span class="ab-muted">Séjour d'une nuit</span>
+                                </div>
+                                <p class="ab-text ab-clamp">surpris par le professionnalisme de l'hôte.
+-reactivitée immédiate.
+-consignes claires.
+-propreté du logement 10/10
+-logement accessible très facilement.
+-équipements complets.
+A ne pas rater au moins une fois dans sa vie.</p>
+                                <button class="ab-more" type="button">Afficher plus</button>
+                            </article>
+
+                            <!-- Lila -->
+                            <article class="ab-review">
+                                <div class="ab-head">
+                                    <div class="ab-avatar">L</div>
+                                    <div class="ab-person">
+                                        <p class="ab-name">Lila</p>
+                                        <div class="ab-years">2 ans sur Airbnb</div>
+                                    </div>
+                                </div>
+                                <div class="ab-meta">
+                                    <span class="ab-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                                    <span><strong>Évaluation 5 étoiles</strong></span>
+                                    <span class="ab-dot">·</span>
+                                    <span><strong>novembre 2025</strong></span>
+                                    <span class="ab-dot">·</span>
+                                    <span class="ab-muted">Séjour d'une nuit</span>
+                                </div>
+                                <p class="ab-text ab-clamp">Je recommande à fond y a plein de petits commerces pas loin boucherie, primeur, boulangerie, épicerie… super pratique!! l'appartement très propre 👍🏻l’hôte suuuper gentil!! il nous avait mis des petits gâteaux yaourts jus il nous a même déposés à l’aéroport Merci encore pour l'accueil Souleymane</p>
+                                <button class="ab-more" type="button">Afficher plus</button>
+                            </article>
+                        </div>
+
+                        <div class="ab-dots" id="dots-card2"></div>
+                    </div>
 
                     <div class="amenities-grid-12">
                         <div class="am-box"><i class="fas fa-door-open"></i> Cuisine, chambres, salon</div>
@@ -459,6 +748,67 @@
             }
             vid.muted = false;
         }
+
+        // Avis: "Afficher plus" + dots + swipe tracking
+        (function initAirbnbReviews(){
+            // Toggle "Afficher plus"
+            document.querySelectorAll('.ab-more').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const card = btn.closest('.ab-review');
+                    const expanded = card.classList.toggle('expanded');
+                    btn.textContent = expanded ? 'Réduire' : 'Afficher plus';
+                });
+            });
+
+            // Dots par carrousel
+            document.querySelectorAll('.ab-reviews-track').forEach(track => {
+                const dotsId = track.getAttribute('data-dots');
+                const dotsWrap = dotsId ? document.getElementById(dotsId) : null;
+                const cards = Array.from(track.querySelectorAll('.ab-review'));
+                if (!dotsWrap || cards.length <= 1) return;
+
+                // Create dots
+                dotsWrap.innerHTML = '';
+                const dots = cards.map((_, i) => {
+                    const b = document.createElement('button');
+                    b.type = 'button';
+                    b.className = 'ab-dotbtn' + (i === 0 ? ' active' : '');
+                    b.addEventListener('click', () => {
+                        cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+                    });
+                    dotsWrap.appendChild(b);
+                    return b;
+                });
+
+                // Update active dot on scroll (mobile)
+                const setActive = (idx) => {
+                    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+                };
+
+                const getClosestIndex = () => {
+                    const trackRect = track.getBoundingClientRect();
+                    let bestIdx = 0;
+                    let bestDist = Infinity;
+
+                    cards.forEach((c, i) => {
+                        const r = c.getBoundingClientRect();
+                        const dist = Math.abs(r.left - trackRect.left);
+                        if (dist < bestDist) { bestDist = dist; bestIdx = i; }
+                    });
+                    return bestIdx;
+                };
+
+                let ticking = false;
+                track.addEventListener('scroll', () => {
+                    if (ticking) return;
+                    ticking = true;
+                    requestAnimationFrame(() => {
+                        setActive(getClosestIndex());
+                        ticking = false;
+                    });
+                });
+            });
+        })();
     </script>
 </body>
 </html>
