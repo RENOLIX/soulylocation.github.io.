@@ -73,7 +73,7 @@
         .drawer a { text-decoration: none; color: var(--primary); font-size: 18px; font-weight: 600; padding-bottom: 10px; border-bottom: 1px solid #e2e8f0; }
         .close-drawer { position: absolute; top: 25px; right: 25px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-dark); }
 
-        /* --- HERO SECTION (Intacte) --- */
+        /* --- HERO SECTION --- */
         .hero {
             position: relative; height: 100vh; min-height: 600px;
             display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white);
@@ -92,14 +92,14 @@
         .btn-outline { background-color: transparent; border: 2px solid var(--white); color: var(--white); }
         .btn-outline:hover { background-color: var(--white); color: var(--primary); transform: translateY(-2px); }
 
-        /* --- SECTION À PROPOS (Intacte) --- */
+        /* --- SECTION À PROPOS --- */
         .section-title { text-align: center; font-size: 2.2rem; font-weight: 700; color: var(--primary); margin-bottom: 15px; }
         .subtitle { text-align: center; color: var(--text-light); margin-bottom: 50px; max-width: 600px; margin: 0 auto; }
         .about-section { padding: 80px 5%; max-width: 1000px; margin: 0 auto; text-align: center; }
         .airport-badge { margin-top: 30px; display: inline-flex; align-items: center; gap: 10px; background: var(--white); border: 1px solid #e2e8f0; padding: 12px 25px; border-radius: 50px; color: var(--primary); font-weight: 600; box-shadow: 0 4px 20px rgba(0,0,0,0.06); font-size: clamp(0.9rem, 2.5vw, 1.1rem); }
         .airport-badge i { color: var(--accent); }
 
-        /* --- APPARTEMENTS (Nouvelle Version) --- */
+        /* --- APPARTEMENTS --- */
         .appartements-section { padding: 80px 5%; background-color: #f1f5f9; }
         .cards-container { display: flex; flex-direction: column; gap: 80px; max-width: 1000px; margin: 0 auto; }
         
@@ -115,19 +115,36 @@
         .slider-btn.prev { left: 15px; }
         .slider-btn.next { right: 15px; }
 
-        /* 2. Vidéo Zone (SANS BACKGROUND) */
-        .video-wrapper { position: relative; background: transparent; width: 100%; }
+        /* 2. Vidéo Zone (Design "Classique") */
+        .video-wrapper { 
+            position: relative; 
+            background: transparent; 
+            width: 100%; 
+            cursor: pointer; /* Curseur main pour indiquer que c'est cliquable */
+        }
         .video-wrapper video { width: 100%; display: block; max-height: 450px; object-fit: contain; }
-        .video-controls {
-            padding: 15px; background: #1e293b; display: flex; align-items: center; justify-content: space-between;
+        
+        /* Bouton Play Central */
+        .play-overlay {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px; height: 70px;
+            background: rgba(0,0,0,0.6);
+            border: 3px solid #fff;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 25px;
+            opacity: 0; /* Caché par défaut (quand ça joue) */
+            transition: opacity 0.3s;
+            pointer-events: none; /* Laisse le clic passer au wrapper */
         }
-        .v-btn-group { display: flex; gap: 10px; }
-        .v-btn {
-            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;
-            padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.9rem;
-            display: flex; align-items: center; gap: 8px; transition: 0.3s;
+        .play-overlay i { margin-left: 5px; } /* Ajustement optique icône */
+
+        /* Quand la vidéo est en pause (ajouté via JS), on affiche le bouton */
+        .video-wrapper.paused .play-overlay {
+            opacity: 1;
         }
-        .v-btn:hover { background: var(--accent); border-color: var(--accent); }
 
         /* 3. Contenu Card */
         .card-content { padding: 40px; }
@@ -144,7 +161,7 @@
 
         .card-desc { text-align: center; margin-bottom: 40px; font-size: 1.05rem; color: #475569; max-width: 800px; margin-left: auto; margin-right: auto; }
 
-        /* 4. Grille 12 équipements (Booking Style) */
+        /* 4. Grille 12 équipements */
         .amenities-grid-12 {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-bottom: 40px;
         }
@@ -154,7 +171,7 @@
         }
         .am-box i { color: var(--accent); width: 20px; text-align: center; font-size: 1rem; }
 
-        /* 5. Carte Tarifs Exclusifs */
+        /* 5. Carte Tarifs */
         .pricing-card {
             background: var(--white); border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px;
             margin-bottom: 30px; position: relative; overflow: hidden; box-shadow: inset 0 0 30px rgba(0,0,0,0.01);
@@ -192,10 +209,9 @@
 </head>
 <body>
 
-    <!-- Header & Nav (Mobile corrigé) -->
+    <!-- Header & Nav -->
     <header>
         <div class="logo">
-            <!-- Remplacez par votre logo -->
             <img src="https://via.placeholder.com/150x50/0f172a/ffffff?text=NAKIB+LOGO" alt="Logo Nakib">
         </div>
         <nav class="desktop-nav">
@@ -223,7 +239,7 @@
         <a href="#contact" onclick="toggleDrawer()">Contact</a>
     </div>
 
-    <!-- Hero Section (REMISE EN PLACE) -->
+    <!-- Hero Section -->
     <section class="hero" id="accueil">
         <div class="hero-content">
             <h1>Séjournez avec Élégance à Alger</h1>
@@ -239,7 +255,7 @@
         </div>
     </section>
 
-    <!-- A Propos Section (REMISE EN PLACE) -->
+    <!-- A Propos Section -->
     <section class="about-section" id="a-propos">
         <h2 class="section-title">Pourquoi nous choisir ?</h2>
         <p class="subtitle">Votre confort est notre priorité absolue.</p>
@@ -252,17 +268,16 @@
         </div>
     </section>
 
-    <!-- Appartements Section (NOUVELLE VERSION) -->
+    <!-- Appartements Section -->
     <section class="appartements-section" id="appartements">
         <div class="cards-container">
             
             <!-- CARTE 1 -->
             <div class="card">
-                <!-- 1. Slider 5 Photos -->
+                <!-- Slider -->
                 <div class="slider-container" id="slider1">
                     <button class="slider-btn prev" onclick="changeSlide(1, -1)"><i class="fas fa-chevron-left"></i></button>
                     <button class="slider-btn next" onclick="changeSlide(1, 1)"><i class="fas fa-chevron-right"></i></button>
-                    <!-- 5 Images -->
                     <div class="slide active"><img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=800&auto=format&fit=crop" alt="Piscine"></div>
                     <div class="slide"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=800&auto=format&fit=crop" alt="Salon"></div>
                     <div class="slide"><img src="https://images.unsplash.com/photo-1556912173-3db9963ee790?q=80&w=800&auto=format&fit=crop" alt="Cuisine"></div>
@@ -270,24 +285,16 @@
                     <div class="slide"><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop" alt="SDB"></div>
                 </div>
 
-                <!-- 2. Vidéo sous les photos (SANS BACKGROUND) -->
-                <div class="video-wrapper">
-                    <!-- VIDEO GITHUB MISE A JOUR -->
+                <!-- VIDEO 1 (CLASSIC STYLE) -->
+                <div class="video-wrapper" id="wrap1" onclick="toggleVideo('vid1', 'wrap1')">
                     <video id="vid1" src="Design sans titre (1).mp4" loop muted autoplay playsinline></video>
-                    <div class="video-controls">
-                        <div class="v-btn-group">
-                            <button class="v-btn" onclick="togglePlay('vid1', this)">
-                                <i class="fas fa-stop"></i> <span>Stop</span>
-                            </button>
-                            <button class="v-btn" onclick="toggleMute('vid1', this)">
-                                <i class="fas fa-volume-mute"></i> <span>Son</span>
-                            </button>
-                        </div>
-                        <span style="color: #94a3b8; font-size: 0.8rem;">Visite Vidéo</span>
+                    <!-- Bouton Overlay -->
+                    <div class="play-overlay">
+                        <i class="fas fa-play"></i>
                     </div>
                 </div>
 
-                <!-- 3. Contenu -->
+                <!-- Contenu -->
                 <div class="card-content">
                     <div class="card-header-v2">
                         <h3 class="card-title">Appartement avec Piscine</h3>
@@ -298,7 +305,6 @@
                         Location d'un appartement F2 meublé et entièrement équipé, avec une piscine chauffée et couverte, sans vis-à-vis. Sous réserve de disponibilité. In sha Allah.
                     </p>
 
-                    <!-- 4. Grille 12 équipements -->
                     <div class="amenities-grid-12">
                         <div class="am-box"><i class="fas fa-door-open"></i> 1 Cuisine, chambre, salon</div>
                         <div class="am-box"><i class="fas fa-bath"></i> 2 Salles de bain</div>
@@ -314,7 +320,6 @@
                         <div class="am-box"><i class="fas fa-map-marker-alt"></i> Hay Benchoubane, Rouiba</div>
                     </div>
 
-                    <!-- 5. Carte Prix -->
                     <div class="pricing-card">
                         <div class="pricing-header">
                             <i class="fas fa-crown"></i>
@@ -327,7 +332,6 @@
                         <div class="price-row"><span class="p-label">Créneau horaire (3h)</span><span class="p-value">4 000 DA</span></div>
                     </div>
 
-                    <!-- 6. Boutons -->
                     <div class="actions-v2">
                         <a href="#" class="btn-reserve btn-wa"><i class="fab fa-whatsapp"></i> Réserver sur WhatsApp</a>
                         <a href="#" class="btn-reserve btn-ab"><i class="fab fa-airbnb"></i> Voir sur Airbnb</a>
@@ -335,7 +339,7 @@
                 </div>
             </div>
 
-            <!-- CARTE 2 (Identique structure) -->
+            <!-- CARTE 2 -->
             <div class="card">
                 <div class="slider-container" id="slider2">
                     <button class="slider-btn prev" onclick="changeSlide(2, -1)"><i class="fas fa-chevron-left"></i></button>
@@ -347,19 +351,11 @@
                     <div class="slide"><img src="https://images.unsplash.com/photo-1522771753035-0a1539503ed5?q=80&w=800&auto=format&fit=crop" alt="Vue"></div>
                 </div>
 
-                <div class="video-wrapper">
-                    <!-- VIDEO 2 MISE A JOUR -->
+                <!-- VIDEO 2 (CLASSIC STYLE) -->
+                <div class="video-wrapper" id="wrap2" onclick="toggleVideo('vid2', 'wrap2')">
                     <video id="vid2" src="Design sans titre (1).mp4" loop muted autoplay playsinline></video>
-                    <div class="video-controls">
-                        <div class="v-btn-group">
-                            <button class="v-btn" onclick="togglePlay('vid2', this)">
-                                <i class="fas fa-stop"></i> <span>Stop</span>
-                            </button>
-                            <button class="v-btn" onclick="toggleMute('vid2', this)">
-                                <i class="fas fa-volume-mute"></i> <span>Son</span>
-                            </button>
-                        </div>
-                        <span style="color: #94a3b8; font-size: 0.8rem;">Visite Vidéo</span>
+                    <div class="play-overlay">
+                        <i class="fas fa-play"></i>
                     </div>
                 </div>
 
@@ -409,7 +405,7 @@
         </div>
     </section>
 
-    <!-- Section Véhicules (REMISE EN PLACE) -->
+    <!-- Section Véhicules -->
     <section id="voitures" style="padding: 100px 5%; background: var(--white); text-align: center;">
         <i class="fas fa-car-side" style="font-size: 4rem; color: #cbd5e1; margin-bottom: 20px;"></i>
         <h2 class="section-title">Flotte de Véhicules</h2>
@@ -441,28 +437,22 @@
             slides[slideIndices[sliderId]].classList.add('active');
         }
 
-        // Video Logic (Play/Stop & Mute/Unmute)
-        function togglePlay(vidId, btn) {
+        // Video Logic (Nouveau Classique)
+        function toggleVideo(vidId, wrapId) {
             const vid = document.getElementById(vidId);
-            const icon = btn.querySelector('i');
-            const span = btn.querySelector('span');
+            const wrap = document.getElementById(wrapId);
+
             if (vid.paused) {
                 vid.play();
-                icon.className = 'fas fa-stop';
-                span.innerText = 'Stop';
+                // Enlever la classe paused pour cacher le bouton
+                wrap.classList.remove('paused');
             } else {
                 vid.pause();
-                icon.className = 'fas fa-play';
-                span.innerText = 'Play';
+                // Ajouter la classe paused pour montrer le bouton
+                wrap.classList.add('paused');
             }
-        }
-
-        function toggleMute(vidId, btn) {
-            const vid = document.getElementById(vidId);
-            const icon = btn.querySelector('i');
-            vid.muted = !vid.muted;
-            if (vid.muted) icon.className = 'fas fa-volume-mute';
-            else icon.className = 'fas fa-volume-up';
+            // Réactive le son au premier clic si l'utilisateur veut du son
+            vid.muted = false;
         }
     </script>
 </body>
