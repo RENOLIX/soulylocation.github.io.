@@ -8,7 +8,7 @@
     <!-- Police Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome (Logos Officiels) -->
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -38,10 +38,14 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             z-index: 1000;
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%;
+            padding: 5px 5%; /* Padding réduit pour compenser la taille du logo */
         }
 
-        .logo img { height: 40px; width: auto; display: block; }
+        .logo img { 
+            height: 50px;
+            width: auto; 
+            display: block; 
+        }
 
         nav.desktop-nav { display: flex; gap: 30px; }
         nav a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.95rem; transition: color 0.3s; position: relative; }
@@ -54,6 +58,7 @@
         @media (max-width: 900px) {
             nav.desktop-nav { display: none; }
             .hamburger { display: block; }
+            .logo img { height: 80px; } /* Logo plus petit sur mobile pour éviter de prendre tout l'écran */
         }
 
         /* Drawer Mobile */
@@ -95,13 +100,11 @@
         .section-title { text-align: center; font-size: 2.2rem; font-weight: 700; color: var(--primary); margin-bottom: 15px; }
         .subtitle { text-align: center; color: var(--text-light); margin-bottom: 50px; max-width: 600px; margin: 0 auto; }
         .about-section { padding: 80px 5%; max-width: 1000px; margin: 0 auto; text-align: center; }
-        .airport-badge { margin-top: 30px; display: inline-flex; align-items: center; gap: 10px; background: var(--white); border: 1px solid #e2e8f0; padding: 12px 25px; border-radius: 50px; color: var(--primary); font-weight: 600; box-shadow: 0 4px 20px rgba(0,0,0,0.06); font-size: clamp(0.9rem, 2.5vw, 1.1rem); }
+        .airport-badge { margin-top: 30px; display:-webkit-inline-box; display: inline-flex; align-items: center; gap: 10px; background: var(--white); border: 1px solid #e2e8f0; padding: 12px 25px; border-radius: 50px; color: var(--primary); font-weight: 600; box-shadow: 0 4px 20px rgba(0,0,0,0.06); font-size: clamp(0.9rem, 2.5vw, 1.1rem); }
         .airport-badge i { color: var(--accent); }
 
         /* --- APPARTEMENTS --- */
         .appartements-section { padding: 80px 5%; background-color: #f1f5f9; }
-        
-        /* Limitation largeur PC à 700px */
         .cards-container { display: flex; flex-direction: column; gap: 80px; max-width: 700px; margin: 0 auto; }
         
         .card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.02); }
@@ -160,17 +163,8 @@
         .actions-v2 { display: flex; flex-direction: column; gap: 15px; }
         
         .btn-reserve {
-            display: flex; 
-            justify-content: center; /* Centre horizontalement */
-            align-items: center;     /* Centre verticalement */
-            gap: 10px; 
-            padding: 18px; 
-            border-radius: 10px;
-            color: white; 
-            text-decoration: none; 
-            font-weight: 700; /* Texte un peu plus gras */
-            font-size: 1.2rem; /* Texte un peu plus grand */
-            transition: transform 0.2s;
+            display: flex; justify-content: center; align-items: center; gap: 10px; padding: 18px; border-radius: 10px;
+            color: white; text-decoration: none; font-weight: 700; font-size: 1.2rem; transition: transform 0.2s;
         }
         .btn-reserve:hover { transform: translateY(-2px); opacity: 0.95; }
         .btn-wa { background: var(--whatsapp); box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
@@ -194,7 +188,7 @@
     <!-- Header & Nav -->
     <header>
         <div class="logo">
-            <img src="https://via.placeholder.com/150x50/0f172a/ffffff?text=NAKIB+LOGO" alt="Logo">
+            <img src="https://i.ibb.co/ks3YcmbT/SOULEYMANE-4.png" alt="Logo">
         </div>
         <nav class="desktop-nav">
             <a href="#accueil">Accueil</a>
@@ -256,7 +250,6 @@
             
             <!-- CARTE 1 -->
             <div class="card">
-                <!-- Slider PORTRAIT -->
                 <div class="slider-container" id="slider1">
                     <button class="slider-btn prev" onclick="changeSlide(1, -1)"><i class="fas fa-chevron-left"></i></button>
                     <button class="slider-btn next" onclick="changeSlide(1, 1)"><i class="fas fa-chevron-right"></i></button>
@@ -272,24 +265,18 @@
                     <div class="slide"><img src="https://i.ibb.co/20Mt9Fgn/Whats-App-Image-2026-03-11-at-14-56-28.jpg" alt="Salon"></div>
                 </div>
 
-                <!-- VIDEO 1 -->
                 <div class="video-wrapper" id="wrap1" onclick="toggleVideo('vid1', 'wrap1')">
-                    <video id="vid1" src="Design sans titre (4).mp4" loop muted autoplay playsinline></video>
-                    <div class="play-overlay">
-                        <i class="fas fa-play"></i>
-                    </div>
+                    <video id="vid1" src="Design sans titre (1).mp4" loop muted autoplay playsinline></video>
+                    <div class="play-overlay"><i class="fas fa-play"></i></div>
                 </div>
 
-                <!-- Contenu -->
                 <div class="card-content">
                     <div class="card-header-v2">
                         <h3 class="card-title">Appartement avec Piscine</h3>
                         <div class="price-badge-round">À partir de 12 000 DA</div>
                     </div>
                     
-                    <p class="card-desc">
-                        Location d'un appartement F2 meublé et entièrement équipé, avec une piscine chauffée et couverte, sans vis-à-vis. Sous réserve de disponibilité. In sha Allah.
-                    </p>
+                    <p class="card-desc">Location d'un appartement F2 meublé et entièrement équipé, avec une piscine chauffée et couverte, sans vis-à-vis. In sha Allah.</p>
 
                     <div class="amenities-grid-12">
                         <div class="am-box"><i class="fas fa-door-open"></i> 1 Cuisine, chambre, salon</div>
@@ -307,32 +294,22 @@
                     </div>
 
                     <div class="pricing-card">
-                        <div class="pricing-header">
-                            <i class="fas fa-crown"></i>
-                            <h4>Tarifs Exclusifs</h4>
-                        </div>
+                        <div class="pricing-header"><i class="fas fa-crown"></i><h4>Tarifs Exclusifs</h4></div>
                         <div class="price-row"><span class="p-label">Hors saison</span><span class="p-value">12 000 DA/jour</span></div>
-                        <div class="price-row"><span class="p-label">Vacances scolaires (Oct, Déc, Avr)</span><span class="p-value">14 000 DA/jour</span></div>
+                        <div class="price-row"><span class="p-label">Vacances scolaires</span><span class="p-value">14 000 DA/jour</span></div>
                         <div class="price-row"><span class="p-label">Juin et Septembre</span><span class="p-value">16 000 DA/jour</span></div>
                         <div class="price-row"><span class="p-label">Juillet et Août</span><span class="p-value">18 000 DA/jour</span></div>
-                        <div class="price-row"><span class="p-label">Créneau horaire (3h)</span><span class="p-value">4 000 DA</span></div>
                     </div>
 
                     <div class="actions-v2">
-                        <!-- BOUTON WHATSAPP MODIFIÉ : Texte "WhatsApp" + Logo Centré -->
-                        <a href="#" class="btn-reserve btn-wa">
-                            <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i> WhatsApp
-                        </a>
-                        <a href="#" class="btn-reserve btn-ab">
-                            <i class="fab fa-airbnb"></i> Voir sur Airbnb
-                        </a>
+                        <a href="#" class="btn-reserve btn-wa"><i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i> WhatsApp</a>
+                        <a href="#" class="btn-reserve btn-ab"><i class="fab fa-airbnb"></i> Voir sur Airbnb</a>
                     </div>
                 </div>
             </div>
 
             <!-- CARTE 2 -->
             <div class="card">
-                <!-- Slider PORTRAIT -->
                 <div class="slider-container" id="slider2">
                     <button class="slider-btn prev" onclick="changeSlide(2, -1)"><i class="fas fa-chevron-left"></i></button>
                     <button class="slider-btn next" onclick="changeSlide(2, 1)"><i class="fas fa-chevron-right"></i></button>
@@ -343,12 +320,9 @@
                     <div class="slide"><img src="https://images.unsplash.com/photo-1522771753035-0a1539503ed5?q=80&w=800&auto=format&fit=crop" alt="Vue"></div>
                 </div>
 
-                <!-- VIDEO 2 -->
                 <div class="video-wrapper" id="wrap2" onclick="toggleVideo('vid2', 'wrap2')">
                     <video id="vid2" src="Design sans titre (1).mp4" loop muted autoplay playsinline></video>
-                    <div class="play-overlay">
-                        <i class="fas fa-play"></i>
-                    </div>
+                    <div class="play-overlay"><i class="fas fa-play"></i></div>
                 </div>
 
                 <div class="card-content">
@@ -357,9 +331,7 @@
                         <div class="price-badge-round">À partir de 14 000 DA</div>
                     </div>
                     
-                    <p class="card-desc">
-                        Grand appartement familial au centre ville, proche de toutes commodités. Idéal pour les familles nombreuses. In sha Allah.
-                    </p>
+                    <p class="card-desc">Grand appartement familial au centre ville, proche de toutes commodités. In sha Allah.</p>
 
                     <div class="amenities-grid-12">
                         <div class="am-box"><i class="fas fa-door-open"></i> 1 Cuisine, 2 chambres, salon</div>
@@ -377,10 +349,7 @@
                     </div>
 
                     <div class="pricing-card">
-                        <div class="pricing-header">
-                            <i class="fas fa-crown"></i>
-                            <h4>Tarifs Exclusifs</h4>
-                        </div>
+                        <div class="pricing-header"><i class="fas fa-crown"></i><h4>Tarifs Exclusifs</h4></div>
                         <div class="price-row"><span class="p-label">Hors saison</span><span class="p-value">14 000 DA/jour</span></div>
                         <div class="price-row"><span class="p-label">Vacances scolaires</span><span class="p-value">16 000 DA/jour</span></div>
                         <div class="price-row"><span class="p-label">Juin et Septembre</span><span class="p-value">18 000 DA/jour</span></div>
@@ -388,17 +357,11 @@
                     </div>
 
                     <div class="actions-v2">
-                        <!-- BOUTON WHATSAPP MODIFIÉ -->
-                        <a href="#" class="btn-reserve btn-wa">
-                            <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i> WhatsApp
-                        </a>
-                        <a href="#" class="btn-reserve btn-ab">
-                            <i class="fab fa-airbnb"></i> Voir sur Airbnb
-                        </a>
+                        <a href="#" class="btn-reserve btn-wa"><i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i> WhatsApp</a>
+                        <a href="#" class="btn-reserve btn-ab"><i class="fab fa-airbnb"></i> Voir sur Airbnb</a>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -414,7 +377,6 @@
     </footer>
 
     <script>
-        // Drawer Logic
         function toggleDrawer() {
             const drawer = document.getElementById('mobile-drawer');
             const overlay = document.querySelector('.drawer-overlay');
@@ -422,7 +384,6 @@
             overlay.classList.toggle('open');
         }
 
-        // Slider Logic
         const slideIndices = { 1: 0, 2: 0 };
         function changeSlide(sliderId, direction) {
             const slider = document.getElementById(`slider${sliderId}`);
@@ -434,18 +395,11 @@
             slides[slideIndices[sliderId]].classList.add('active');
         }
 
-        // Video Logic
         function toggleVideo(vidId, wrapId) {
             const vid = document.getElementById(vidId);
             const wrap = document.getElementById(wrapId);
-
-            if (vid.paused) {
-                vid.play();
-                wrap.classList.remove('paused');
-            } else {
-                vid.pause();
-                wrap.classList.add('paused');
-            }
+            if (vid.paused) { vid.play(); wrap.classList.remove('paused'); } 
+            else { vid.pause(); wrap.classList.add('paused'); }
             vid.muted = false;
         }
     </script>
