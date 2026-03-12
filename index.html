@@ -24,6 +24,9 @@
             --whatsapp: #25D366;
             --airbnb: #FF5A5F;
             --gold: #d97706;
+            --warning-bg: #fff7ed;
+            --warning-border: #fdba74;
+            --warning-text: #9a3412;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -95,6 +98,10 @@
         .btn-primary:hover { background-color: var(--accent-hover); transform: translateY(-2px); }
         .btn-outline { background-color: transparent; border: 2px solid var(--white); color: var(--white); }
         .btn-outline:hover { background-color: var(--white); color: var(--primary); transform: translateY(-2px); }
+        
+        /* Nouveau bouton conditions */
+        .btn-conditions { background-color: var(--warning-border); color: var(--white); box-shadow: 0 4px 15px rgba(253, 186, 116, 0.4); }
+        .btn-conditions:hover { background-color: var(--gold); transform: translateY(-2px); }
 
         /* --- SECTION À PROPOS --- */
         .section-title { text-align: center; font-size: 2.2rem; font-weight: 700; color: var(--primary); margin-bottom: 15px; }
@@ -109,13 +116,12 @@
         
         .card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.02); }
 
-        /* 1. Slider Photos PORTRAIT (4:5) */
+        /* Slider Photos PORTRAIT (4:5) */
         .slider-container { 
             position: relative; width: 100%; height: 0; padding-bottom: 125%; 
             background: transparent; overflow: hidden; 
         }
 
-        /* Nouvelle vague plus petite et plus douce */
         .slider-container::after {
             content: "";
             position: absolute;
@@ -156,11 +162,10 @@
         .slider-btn.prev { left: 15px; }
         .slider-btn.next { right: 15px; }
 
-        /* 2. Vidéo Zone */
+        /* Vidéo Zone */
         .video-wrapper { position: relative; background: transparent; width: 100%; cursor: pointer; }
         .video-wrapper video { width: 100%; display: block; max-height: 450px; object-fit: contain; }
         
-        /* Bouton Play Central */
         .play-overlay {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             width: 70px; height: 70px; background: rgba(0,0,0,0.6); border: 3px solid #fff; border-radius: 50%;
@@ -170,150 +175,35 @@
         .play-overlay i { margin-left: 5px; }
         .video-wrapper.paused .play-overlay { opacity: 1; }
 
-        /* 3. Contenu Card */
+        /* Contenu Card */
         .card-content { padding: 40px; }
         .card-header-v2 { text-align: center; margin-bottom: 30px; }
         .card-title { font-size: 2rem; color: var(--primary); font-weight: 700; margin-bottom: 10px; line-height: 1.2; }
         .price-badge-round { display: inline-block; background: var(--primary); color: var(--white); padding: 8px 25px; border-radius: 50px; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
         .card-desc { text-align: center; margin-bottom: 40px; font-size: 1.05rem; color: #475569; max-width: 800px; margin-left: auto; margin-right: auto; }
 
-        /* 3bis. AVIS STYLE AIRBNB (SWIPE MOBILE) */
-        .ab-reviews-block { margin: 10px 0 40px; }
-        .ab-reviews-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #222;
-            margin: 0 0 14px;
-            letter-spacing: -0.2px;
-        }
-
-        .ab-reviews-track {
-            display: flex;
-            gap: 16px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            padding: 2px 4px 14px;
-            margin: 0 -4px;
-        }
-        .ab-reviews-track::-webkit-scrollbar { height: 8px; }
-        .ab-reviews-track::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 999px; }
-        .ab-reviews-track::-webkit-scrollbar-track { background: transparent; }
-
-        .ab-review {
-            flex: 0 0 86%;
-            scroll-snap-align: start;
-            background: #fff;
-            border: 1px solid #e6e6e6;
-            border-radius: 12px;
-            padding: 18px;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.10);
-            color: #222;
-        }
-
-        .ab-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-        .ab-avatar {
-            width: 48px; height: 48px;
-            border-radius: 50%;
-            background: #222;
-            color: #fff;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700;
-            font-size: 18px;
-            letter-spacing: 0.2px;
-            flex: 0 0 auto;
-        }
-        .ab-person { min-width: 0; }
-        .ab-name { font-size: 16px; font-weight: 700; line-height: 20px; margin: 0; color: #222; }
-        .ab-years { font-size: 14px; color: #717171; margin-top: 2px; }
-
-        .ab-meta {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 6px;
-            font-size: 14px;
-            margin-bottom: 10px;
-            color: #222;
-        }
-        .ab-stars {
-            display: inline-flex;
-            gap: 2px;
-            color: #222; /* Airbnb = étoiles noires */
-            font-size: 12px;
-            transform: translateY(-1px);
-        }
-        .ab-dot { color: #222; font-weight: 700; margin: 0 2px; }
-        .ab-meta strong { font-weight: 700; }
-        .ab-muted { color: #717171; font-weight: 400; }
-
-        .ab-text {
-            font-size: 16px;
-            line-height: 24px;
-            color: #222;
-            white-space: pre-line;
-        }
-
-        /* Clamp + bouton "Afficher plus" type Airbnb */
-        .ab-text.ab-clamp {
-            display: -webkit-box;
-            -webkit-line-clamp: 6;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .ab-more {
-            margin-top: 10px;
-            background: none;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            color: #222;
-            font-weight: 700;
-            text-decoration: underline;
-            font-size: 14px;
-        }
-        .ab-review.expanded .ab-text.ab-clamp {
+        /* Bouton Avis Airbnb (Remplacement) */
+        .btn-review-link {
             display: block;
-            -webkit-line-clamp: unset;
-            overflow: visible;
-        }
-
-        .ab-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 12px;
-        }
-        .ab-dotbtn {
-            width: 7px;
-            height: 7px;
-            border-radius: 999px;
-            border: none;
-            background: rgba(0,0,0,0.18);
+            width: 100%;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--text-dark);
+            font-weight: 600;
+            text-decoration: underline;
             cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1rem;
         }
-        .ab-dotbtn.active { background: rgba(0,0,0,0.65); }
+        .btn-review-link:hover { color: var(--airbnb); }
 
-        /* Desktop: grille 3 colonnes (plus “Airbnb desktop”) + pas de dots */
-        @media (min-width: 768px) {
-            .ab-reviews-track {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                overflow: visible;
-                scroll-snap-type: none;
-                padding: 0;
-                margin: 0;
-            }
-            .ab-review { flex: auto; box-shadow: none; }
-            .ab-dots { display: none; }
-        }
-
-        /* 4. Grille 12 équipements */
+        /* Grille 12 équipements */
         .amenities-grid-12 { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-bottom: 40px; }
         .am-box { border: 1px solid #e2e8f0; background: #f8fafc; border-radius: 4px; padding: 12px; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--primary); font-weight: 500; }
         .am-box i { color: var(--accent); width: 20px; text-align: center; font-size: 1rem; }
 
-        /* 5. Carte Tarifs */
+        /* Carte Tarifs */
         .pricing-card { background: var(--white); border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; margin-bottom: 30px; position: relative; overflow: hidden; box-shadow: inset 0 0 30px rgba(0,0,0,0.01); }
         .pricing-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--gold); }
         .pricing-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; border-bottom: 1px dashed #cbd5e1; padding-bottom: 15px; }
@@ -324,7 +214,7 @@
         .p-label { color: #64748b; font-weight: 500; }
         .p-value { font-weight: 700; color: var(--primary); }
 
-        /* 6. Boutons Actions */
+        /* Boutons Actions */
         .actions-v2 { display: flex; flex-direction: column; gap: 15px; }
         
         .btn-reserve {
@@ -334,6 +224,44 @@
         .btn-reserve:hover { transform: translateY(-2px); opacity: 0.95; }
         .btn-wa { background: var(--whatsapp); box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
         .btn-ab { background: var(--airbnb); box-shadow: 0 4px 15px rgba(255, 90, 95, 0.3); }
+
+        /* Warning Blocks */
+        .warning-block {
+            background-color: var(--warning-bg);
+            border-left: 5px solid var(--warning-border);
+            padding: 30px;
+            margin: 0 auto;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .warning-title {
+            color: var(--warning-text);
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .warning-content { color: #7c2d12; font-size: 1rem; margin-bottom: 10px; }
+        .warning-sub { font-size: 0.9rem; color: #9a3412; opacity: 0.8; margin-top: 15px; }
+        .warning-list { text-align: left; list-style: none; margin-top: 20px; }
+        .warning-list li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+        .warning-list li::before { content: '•'; color: var(--warning-border); position: absolute; left: 0; font-weight: bold; }
+
+        /* About Text Block */
+        .about-text-block {
+            text-align: center;
+            max-width: 800px;
+            margin: 60px auto 20px;
+            padding: 0 20px;
+        }
+        .about-text-block h3 { color: var(--primary); font-size: 1.8rem; margin-bottom: 20px; }
+        .about-text-block p { color: var(--text-dark); margin-bottom: 15px; font-size: 1.05rem; }
 
         /* Footer */
         footer { background: var(--primary); color: #94a3b8; text-align: center; padding: 50px 20px; font-size: 0.9rem; }
@@ -354,7 +282,7 @@
     <!-- Header & Nav -->
     <header>
         <div class="logo">
-            <img src="https://i.ibb.co/ks3YcmbT/SOULEYMANE-4.png" alt="Logo">
+            <img src="https://i.ibb.co/YFKf40jQ/SOULEYMANE-6.png" alt="Logo">
         </div>
         <nav class="desktop-nav">
             <a href="#accueil">Accueil</a>
@@ -393,6 +321,10 @@
                 <a href="#voitures" class="btn btn-outline">
                     <i class="fas fa-car"></i> Louer un Véhicule
                 </a>
+                <!-- Nouveau Bouton Conditions -->
+                <a href="#conditions-auto" class="btn btn-conditions">
+                    <i class="fas fa-file-contract"></i> Conditions
+                </a>
             </div>
         </div>
     </section>
@@ -402,7 +334,7 @@
         <h2 class="section-title">Pourquoi nous choisir ?</h2>
         <p class="subtitle">Votre confort est notre priorité absolue.</p>
         <p style="color: #475569; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
-            Bienvenue chez <strong>Souleymane Location</strong>. Nous redéfinissons l'expérience de location à Alger en vous proposant des biens d'exception, maintenus selon les standards internationaux.
+            Bienvenue chez <strong>Souleymane Location</strong>. Découvrez nos appartements chaleureux et fonctionnels, conçus pour vous offrir tout le confort nécessaire au quotidien dans un cadre soigné et accueillant.
         </p>
         <div class="airport-badge">
             <i class="fas fa-plane-departure"></i>
@@ -442,87 +374,12 @@
                         <div class="price-badge-round">À partir de 12 000 DA</div>
                     </div>
                     
-                    <p class="card-desc">Location d'un appartement F2 meublé et entièrement équipé, avec une piscine chauffée et couverte, sans vis-à-vis. In sha Allah.</p>
+                    <p class="card-desc">Location d'un appartement F2 meublé et entièrement équipé, avec une piscine chauffée et couverte, sans vis-à-vis.</p>
 
-                    <!-- AVIS AIRBNB - CARTE 1 (SWIPE MOBILE) -->
-                    <div class="ab-reviews-block">
-                        <div class="ab-reviews-title">Commentaires</div>
-
-                        <div class="ab-reviews-track" data-dots="dots-card1">
-                            <!-- Inès -->
-                            <article class="ab-review">
-                                <div class="ab-head">
-                                    <div class="ab-avatar">I</div>
-                                    <div class="ab-person">
-                                        <p class="ab-name">Inès</p>
-                                        <div class="ab-years">11 ans sur Airbnb</div>
-                                    </div>
-                                </div>
-                                <div class="ab-meta">
-                                    <span class="ab-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                    <span><strong>Évaluation 5 étoiles</strong></span>
-                                    <span class="ab-dot">·</span>
-                                    <span><strong>Il y a 2 semaines</strong></span>
-                                    <span class="ab-dot">·</span>
-                                    <span class="ab-muted">Séjour de quelques nuits</span>
-                                </div>
-                                <p class="ab-text ab-clamp">Excellent rapport qualité-prix, au-delà de nos attentes. Le logement est propre, confortable et très agréable. La piscine intérieure chauffée est un vrai plus et a fait le bonheur de mes enfants.
-L’hôte est très accueillant et disponible. Nous avons passé un magnifique séjour et repartons avec de très beaux souvenirs. Merci encore !!!</p>
-                                <button class="ab-more" type="button">Afficher plus</button>
-                            </article>
-
-                            <!-- Kahina -->
-                            <article class="ab-review">
-                                <div class="ab-head">
-                                    <div class="ab-avatar">K</div>
-                                    <div class="ab-person">
-                                        <p class="ab-name">Kahina</p>
-                                        <div class="ab-years">5 ans sur Airbnb</div>
-                                    </div>
-                                </div>
-                                <div class="ab-meta">
-                                    <span class="ab-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                    <span><strong>Évaluation 5 étoiles</strong></span>
-                                    <span class="ab-dot">·</span>
-                                    <span><strong>décembre 2025</strong></span>
-                                    <span class="ab-dot">·</span>
-                                    <span class="ab-muted">Séjour de quelques nuits</span>
-                                </div>
-                                <p class="ab-text ab-clamp">Un couple très accueillant, disponible et bienveillant ma sha Allah,
-Logement largement mieux en vrai que sur les photos.
-Tout est très bien pensé et agencé pour qu'on ne manque de rien.
-Les matériaux utilisés sont très qualitatifs. 
-La température de la piscine est extraordinaire... 34 degrés. Elle est grande et il y a toilettes, douche et jeux pour enfants/débutants
-C'est une super adresse pour se reposer et profiter en famille</p>
-                                <button class="ab-more" type="button">Afficher plus</button>
-                            </article>
-
-                            <!-- Houcine -->
-                            <article class="ab-review">
-                                <div class="ab-head">
-                                    <div class="ab-avatar">H</div>
-                                    <div class="ab-person">
-                                        <p class="ab-name">Houcine</p>
-                                        <div class="ab-years">11 ans sur Airbnb</div>
-                                    </div>
-                                </div>
-                                <div class="ab-meta">
-                                    <span class="ab-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                    <span><strong>Évaluation 5 étoiles</strong></span>
-                                    <span class="ab-dot">·</span>
-                                    <span><strong>décembre 2025</strong></span>
-                                    <span class="ab-dot">·</span>
-                                    <span class="ab-muted">Séjour de quelques nuits</span>
-                                </div>
-                                <p class="ab-text ab-clamp">Logement parfaitement conforme à l’annonce, avec une piscine impeccable qui a fait le bonheur des enfants.
-Un grand merci à Souleymane, un hôte exceptionnel, attentionné et disponible tout au long du séjour (prises de nouvelles régulières, frigo rempli avant notre arrivée…).
-Une expérience au top, vous pouvez réserver les yeux fermés, votre seule problématique sera d’annoncer aux enfants si vous en avez qu’il est l’heure de quitter l’appart de Souleymane ! :)</p>
-                                <button class="ab-more" type="button">Afficher plus</button>
-                            </article>
-                        </div>
-
-                        <div class="ab-dots" id="dots-card1"></div>
-                    </div>
+                    <!-- Bouton Voir Avis -->
+                    <a href="https://www.airbnb.fr/rooms/1220434421238817939?viralityEntryPoint=1&s=76" target="_blank" class="btn-review-link">
+                        <i class="fas fa-star"></i> Voir les avis sur Airbnb
+                    </a>
 
                     <div class="amenities-grid-12">
                         <div class="am-box"><i class="fas fa-door-open"></i> 1 Cuisine, chambre, salon</div>
@@ -580,85 +437,12 @@ Une expérience au top, vous pouvez réserver les yeux fermés, votre seule prob
                         <div class="price-badge-round">À partir de 4 500 DA</div>
                     </div>
                     
-                    <p class="card-desc">Location d'un appartement F2 meublé et entièrement équipé avec une cour,sans aucun vis-à-vis et ensoleillé. sous réserve de disponibilité. In sha Allah.</p>
+                    <p class="card-desc">Location d'un appartement F2 cosy, meublé et entièrement équipé, avec une cour ensoleillée et sans aucun vis-à-vis.</p>
 
-                    <!-- AVIS AIRBNB - CARTE 2 (SWIPE MOBILE) -->
-                    <div class="ab-reviews-block">
-                        <div class="ab-reviews-title">Commentaires</div>
-
-                        <div class="ab-reviews-track" data-dots="dots-card2">
-                            <!-- Mohamed-Ali -->
-                            <article class="ab-review">
-                                <div class="ab-head">
-                                    <div class="ab-avatar">M</div>
-                                    <div class="ab-person">
-                                        <p class="ab-name">Mohamed-Ali</p>
-                                        <div class="ab-years">4 ans sur Airbnb</div>
-                                    </div>
-                                </div>
-                                <div class="ab-meta">
-                                    <span class="ab-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                    <span><strong>Évaluation 5 étoiles</strong></span>
-                                    <span class="ab-dot">·</span>
-                                    <span><strong>décembre 2025</strong></span>
-                                    <span class="ab-dot">·</span>
-                                    <span class="ab-muted">Séjour d'une nuit</span>
-                                </div>
-                                <p class="ab-text ab-clamp">J’ai honnêtement été très surpris par la qualité de l’appartement ayant fait plusieurs appartements sur Alger, il est l’appartement le plus moderne le mieux chauffé avec un des plus beaux agencement que j’ai pu voir</p>
-                                <button class="ab-more" type="button">Afficher plus</button>
-                            </article>
-
-                            <!-- Nordine -->
-                            <article class="ab-review">
-                                <div class="ab-head">
-                                    <div class="ab-avatar">N</div>
-                                    <div class="ab-person">
-                                        <p class="ab-name">Nordine</p>
-                                        <div class="ab-years">5 ans sur Airbnb</div>
-                                    </div>
-                                </div>
-                                <div class="ab-meta">
-                                    <span class="ab-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                    <span><strong>Évaluation 5 étoiles</strong></span>
-                                    <span class="ab-dot">·</span>
-                                    <span><strong>Il y a 5 jours</strong></span>
-                                    <span class="ab-dot">·</span>
-                                    <span class="ab-muted">Séjour d'une nuit</span>
-                                </div>
-                                <p class="ab-text ab-clamp">surpris par le professionnalisme de l'hôte.
--reactivitée immédiate.
--consignes claires.
--propreté du logement 10/10
--logement accessible très facilement.
--équipements complets.
-A ne pas rater au moins une fois dans sa vie.</p>
-                                <button class="ab-more" type="button">Afficher plus</button>
-                            </article>
-
-                            <!-- Lila -->
-                            <article class="ab-review">
-                                <div class="ab-head">
-                                    <div class="ab-avatar">L</div>
-                                    <div class="ab-person">
-                                        <p class="ab-name">Lila</p>
-                                        <div class="ab-years">2 ans sur Airbnb</div>
-                                    </div>
-                                </div>
-                                <div class="ab-meta">
-                                    <span class="ab-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                    <span><strong>Évaluation 5 étoiles</strong></span>
-                                    <span class="ab-dot">·</span>
-                                    <span><strong>novembre 2025</strong></span>
-                                    <span class="ab-dot">·</span>
-                                    <span class="ab-muted">Séjour d'une nuit</span>
-                                </div>
-                                <p class="ab-text ab-clamp">Je recommande à fond y a plein de petits commerces pas loin boucherie, primeur, boulangerie, épicerie… super pratique!! l'appartement très propre 👍🏻l’hôte suuuper gentil!! il nous avait mis des petits gâteaux yaourts jus il nous a même déposés à l’aéroport Merci encore pour l'accueil Souleymane</p>
-                                <button class="ab-more" type="button">Afficher plus</button>
-                            </article>
-                        </div>
-
-                        <div class="ab-dots" id="dots-card2"></div>
-                    </div>
+                    <!-- Bouton Voir Avis -->
+                    <a href="https://www.airbnb.fr/rooms/1170319902930934755?viralityEntryPoint=1&s=76" target="_blank" class="btn-review-link">
+                        <i class="fas fa-star"></i> Voir les avis sur Airbnb
+                    </a>
 
                     <div class="amenities-grid-12">
                         <div class="am-box"><i class="fas fa-door-open"></i> Cuisine, chambres, salon</div>
@@ -703,14 +487,199 @@ A ne pas rater au moins une fois dans sa vie.</p>
                     </div>
                 </div>
             </div>
+
+            <!-- WARNING BLOCK AVANT VOITURE -->
+            <div class="warning-block">
+                <div class="warning-title"><i class="fas fa-thumbtack"></i> CONDITION DE LOCATION</div>
+                <p class="warning-content">Réservation uniquement avec un acompte obligatoire. baraka allahu fikom.</p>
+                <p class="warning-sub">conditions. photos et informations supplémentaire en privé. notre equipe est a votre disposition pour toute demande personalisée.</p>
+            </div>
+
+            <!-- Section Véhicules ID wrapper -->
+            <div id="voitures"></div>
+
+            <!-- CARTE 3: FIAT TIPO -->
+            <div class="card">
+                <div class="slider-container" id="slider3">
+                    <button class="slider-btn prev" onclick="changeSlide(3, -1)"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn next" onclick="changeSlide(3, 1)"><i class="fas fa-chevron-right"></i></button>
+                    <!-- Placeholder Car Image -->
+                    <div class="slide active"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2672&auto=format&fit=crop" alt="Fiat Tipo"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=2670&auto=format&fit=crop" alt="Fiat Interior"></div>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header-v2">
+                        <h3 class="card-title">FIAT TIPO NOIR</h3>
+                    </div>
+                    
+                    <p class="card-desc">Location dune fiat tipo noir 1.6 essence, avec boite automatique, toutes options avec jantes alu. élegance et performance pour tous vos deplacements.</p>
+
+                    <div class="amenities-grid-12">
+                        <div class="am-box"><i class="fas fa-gas-pump"></i> 1.6 essence - boite automatique</div>
+                        <div class="am-box"><i class="fas fa-gauge-high"></i> Regulateur de vitesse</div>
+                        <div class="am-box"><i class="fas fa-snowflake"></i> Climatisation</div>
+                        <div class="am-box"><i class="fab fa-usb"></i> Port USB</div>
+                        <div class="am-box"><i class="fas fa-shield-halved"></i> 4 Airbags</div>
+                        <div class="am-box"><i class="fas fa-up-down"></i> 4 Vitres electriques</div>
+                        <div class="am-box"><i class="fas fa-road"></i> ABS, ESP</div>
+                        <div class="am-box"><i class="fas fa-wifi"></i> Radar de stationnement arriere</div>
+                        <div class="am-box"><i class="fas fa-car-side"></i> Retroviseurs electriques</div>
+                        <div class="am-box"><i class="fas fa-city"></i> City drive</div>
+                        <div class="am-box"><i class="fas fa-lock"></i> Verrouillage centralise a distance</div>
+                        <div class="am-box"><i class="fas fa-gamepad"></i> Commandes au volant</div>
+                        <div class="am-box"><i class="fab fa-bluetooth"></i> Bluetooth</div>
+                        <div class="am-box"><i class="fas fa-bell"></i> Alarme</div>
+                        <div class="am-box"><i class="fas fa-tablet-screen-button"></i> Ecrant tactile</div>
+                        <div class="am-box"><i class="far fa-lightbulb"></i> Feux LED</div>
+                        <div class="am-box"><i class="fas fa-lines-leaning"></i> Aide au maintien de voie</div>
+                        <div class="am-box"><i class="fas fa-wave-square"></i> Vibration volant sortie de trajectoire</div>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="pricing-header"><i class="fas fa-crown"></i><h4>Tarifs Location</h4></div>
+                        <div class="price-row"><span class="p-label">Nous contacter</span><span class="p-value">Sur devis</span></div>
+                    </div>
+
+                    <div class="actions-v2">
+                        <a href="https://wa.me/213555110152?text=Bonjour%2C%20je%20souhaite%20louer%20la%20Fiat%20Tipo." class="btn-reserve btn-wa" target="_blank" rel="noopener">
+                        <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARTE 4: VOITURE 2 (COPIE) -->
+            <div class="card">
+                <div class="slider-container" id="slider4">
+                    <button class="slider-btn prev" onclick="changeSlide(4, -1)"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn next" onclick="changeSlide(4, 1)"><i class="fas fa-chevron-right"></i></button>
+                    <div class="slide active"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2672&auto=format&fit=crop" alt="Fiat Tipo"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=2670&auto=format&fit=crop" alt="Fiat Interior"></div>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header-v2">
+                        <h3 class="card-title">FIAT TIPO NOIR</h3>
+                    </div>
+                    
+                    <p class="card-desc">Location dune fiat tipo noir 1.6 essence, avec boite automatique, toutes options avec jantes alu. élegance et performance pour tous vos deplacements.</p>
+
+                    <div class="amenities-grid-12">
+                        <div class="am-box"><i class="fas fa-gas-pump"></i> 1.6 essence - boite automatique</div>
+                        <div class="am-box"><i class="fas fa-gauge-high"></i> Regulateur de vitesse</div>
+                        <div class="am-box"><i class="fas fa-snowflake"></i> Climatisation</div>
+                        <div class="am-box"><i class="fab fa-usb"></i> Port USB</div>
+                        <div class="am-box"><i class="fas fa-shield-halved"></i> 4 Airbags</div>
+                        <div class="am-box"><i class="fas fa-up-down"></i> 4 Vitres electriques</div>
+                        <div class="am-box"><i class="fas fa-road"></i> ABS, ESP</div>
+                        <div class="am-box"><i class="fas fa-wifi"></i> Radar de stationnement arriere</div>
+                        <div class="am-box"><i class="fas fa-car-side"></i> Retroviseurs electriques</div>
+                        <div class="am-box"><i class="fas fa-city"></i> City drive</div>
+                        <div class="am-box"><i class="fas fa-lock"></i> Verrouillage centralise a distance</div>
+                        <div class="am-box"><i class="fas fa-gamepad"></i> Commandes au volant</div>
+                        <div class="am-box"><i class="fab fa-bluetooth"></i> Bluetooth</div>
+                        <div class="am-box"><i class="fas fa-bell"></i> Alarme</div>
+                        <div class="am-box"><i class="fas fa-tablet-screen-button"></i> Ecrant tactile</div>
+                        <div class="am-box"><i class="far fa-lightbulb"></i> Feux LED</div>
+                        <div class="am-box"><i class="fas fa-lines-leaning"></i> Aide au maintien de voie</div>
+                        <div class="am-box"><i class="fas fa-wave-square"></i> Vibration volant sortie de trajectoire</div>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="pricing-header"><i class="fas fa-crown"></i><h4>Tarifs Location</h4></div>
+                        <div class="price-row"><span class="p-label">Nous contacter</span><span class="p-value">Sur devis</span></div>
+                    </div>
+
+                    <div class="actions-v2">
+                        <a href="https://wa.me/213555110152?text=Bonjour%2C%20je%20souhaite%20louer%20la%20Fiat%20Tipo." class="btn-reserve btn-wa" target="_blank" rel="noopener">
+                        <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARTE 5: VOITURE 3 (COPIE) -->
+            <div class="card">
+                <div class="slider-container" id="slider5">
+                    <button class="slider-btn prev" onclick="changeSlide(5, -1)"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn next" onclick="changeSlide(5, 1)"><i class="fas fa-chevron-right"></i></button>
+                    <div class="slide active"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2672&auto=format&fit=crop" alt="Fiat Tipo"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=2670&auto=format&fit=crop" alt="Fiat Interior"></div>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header-v2">
+                        <h3 class="card-title">FIAT TIPO NOIR</h3>
+                    </div>
+                    
+                    <p class="card-desc">Location dune fiat tipo noir 1.6 essence, avec boite automatique, toutes options avec jantes alu. élegance et performance pour tous vos deplacements.</p>
+
+                    <div class="amenities-grid-12">
+                        <div class="am-box"><i class="fas fa-gas-pump"></i> 1.6 essence - boite automatique</div>
+                        <div class="am-box"><i class="fas fa-gauge-high"></i> Regulateur de vitesse</div>
+                        <div class="am-box"><i class="fas fa-snowflake"></i> Climatisation</div>
+                        <div class="am-box"><i class="fab fa-usb"></i> Port USB</div>
+                        <div class="am-box"><i class="fas fa-shield-halved"></i> 4 Airbags</div>
+                        <div class="am-box"><i class="fas fa-up-down"></i> 4 Vitres electriques</div>
+                        <div class="am-box"><i class="fas fa-road"></i> ABS, ESP</div>
+                        <div class="am-box"><i class="fas fa-wifi"></i> Radar de stationnement arriere</div>
+                        <div class="am-box"><i class="fas fa-car-side"></i> Retroviseurs electriques</div>
+                        <div class="am-box"><i class="fas fa-city"></i> City drive</div>
+                        <div class="am-box"><i class="fas fa-lock"></i> Verrouillage centralise a distance</div>
+                        <div class="am-box"><i class="fas fa-gamepad"></i> Commandes au volant</div>
+                        <div class="am-box"><i class="fab fa-bluetooth"></i> Bluetooth</div>
+                        <div class="am-box"><i class="fas fa-bell"></i> Alarme</div>
+                        <div class="am-box"><i class="fas fa-tablet-screen-button"></i> Ecrant tactile</div>
+                        <div class="am-box"><i class="far fa-lightbulb"></i> Feux LED</div>
+                        <div class="am-box"><i class="fas fa-lines-leaning"></i> Aide au maintien de voie</div>
+                        <div class="am-box"><i class="fas fa-wave-square"></i> Vibration volant sortie de trajectoire</div>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="pricing-header"><i class="fas fa-crown"></i><h4>Tarifs Location</h4></div>
+                        <div class="price-row"><span class="p-label">Nous contacter</span><span class="p-value">Sur devis</span></div>
+                    </div>
+
+                    <div class="actions-v2">
+                        <a href="https://wa.me/213555110152?text=Bonjour%2C%20je%20souhaite%20louer%20la%20Fiat%20Tipo." class="btn-reserve btn-wa" target="_blank" rel="noopener">
+                        <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WARNING BLOCK 2 (GRAND TEXTE) -->
+            <div id="conditions-auto" class="warning-block">
+                <div class="warning-title"><i class="fas fa-thumbtack"></i> CONDITION DE LOCATION</div>
+                <p class="warning-content">Réservation uniquement avec un acompte obligatoire. baraka allahu fikom.</p>
+                <div style="text-align: left; margin-top: 20px;">
+                    <p>Lisez attentivement ces conditions avant de signer votre contrat, elles définissent vos obligations et celles de NAKIBLOCATION, et représentent un engagement réciproque.</p>
+                    <ul class="warning-list">
+                        <li>Pour retirer le véhicule, le locataire et tout conducteur autorisé doivent présenter un permis de conduire valide et avoir préalablement payé la totalité de sa location avec un accompte en amont.</li>
+                        <li>Nous ne prenons ni passeport ni caution nous fonctionnons à la confiance il faudra donc bien respecter les conditions.</li>
+                        <li>Tout conducteur supplémentaire doit être signalé et respecter ces conditions. Le locataire reste responsable en cas d'accident ou de non-respect.</li>
+                        <li>En cas d'accident non responsable de votre part les frais sont à moitié a notre charge et lautre moitié a votre charge nous compterons pas les frais d'immobilisation.</li>
+                        <li>Kilometrage limité à 250km/jour cumulable (30da km spplémentaires).</li>
+                        <li>Aucune réparation du véhicule ne devra être entreprise sans mon accord.</li>
+                        <li>En cas d annulation avant votre arrivé l'accompte ne sera aucunement restitué.</li>
+                        <li>La voiture ne doit être utilisé cas titre personnel et non professionnel et la zone du Sahara ne doit pas être franchi.</li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- Section Véhicules -->
-    <section id="voitures" style="padding: 100px 5%; background: var(--white); text-align: center;">
-        <i class="fas fa-car-side" style="font-size: 4rem; color: #cbd5e1; margin-bottom: 20px;"></i>
-        <h2 class="section-title">Flotte de Véhicules</h2>
-        <p style="color: var(--text-light);">Notre gamme de véhicules premium sera disponible très prochainement.</p>
+    <!-- SECTION A PROPOS (TEXTE SEULEMENT) -->
+    <section class="about-text-block">
+        <h3>À PROPOS DE NOUS</h3>
+        <p><strong>NAKIBLOCATION, une entreprise familiale fidèle à ses principes!</strong></p>
+        <p>Nous avons à cœur de proposer des tarifs compétitifs et d'être totalement transparents afin d'éviter toute mauvaise surprise.</p>
+        <p>Les prix affichés sur nos offres sont exactement ceux que vous paierez, sans frais cachés.</p>
+        <p>En bonus : livraison et restitution gratuites à l'aéroport d'Alger pour tous nos véhicules à partir d'une semaine de location.</p>
+        <p>Honnêteté et fiabilité sont au centre de notre engagement.</p>
+        <p>En tant qu'entreprise familiale , nos frais de fonctionnement réduits nous permettent de vous garantir des prix avantageux toute l'année.</p>
     </section>
 
     <footer>
@@ -725,7 +694,7 @@ A ne pas rater au moins une fois dans sa vie.</p>
             overlay.classList.toggle('open');
         }
 
-        const slideIndices = { 1: 0, 2: 0 };
+        const slideIndices = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
         function changeSlide(sliderId, direction) {
             const slider = document.getElementById(`slider${sliderId}`);
             const slides = slider.querySelectorAll('.slide');
@@ -748,67 +717,6 @@ A ne pas rater au moins une fois dans sa vie.</p>
             }
             vid.muted = false;
         }
-
-        // Avis: "Afficher plus" + dots + swipe tracking
-        (function initAirbnbReviews(){
-            // Toggle "Afficher plus"
-            document.querySelectorAll('.ab-more').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const card = btn.closest('.ab-review');
-                    const expanded = card.classList.toggle('expanded');
-                    btn.textContent = expanded ? 'Réduire' : 'Afficher plus';
-                });
-            });
-
-            // Dots par carrousel
-            document.querySelectorAll('.ab-reviews-track').forEach(track => {
-                const dotsId = track.getAttribute('data-dots');
-                const dotsWrap = dotsId ? document.getElementById(dotsId) : null;
-                const cards = Array.from(track.querySelectorAll('.ab-review'));
-                if (!dotsWrap || cards.length <= 1) return;
-
-                // Create dots
-                dotsWrap.innerHTML = '';
-                const dots = cards.map((_, i) => {
-                    const b = document.createElement('button');
-                    b.type = 'button';
-                    b.className = 'ab-dotbtn' + (i === 0 ? ' active' : '');
-                    b.addEventListener('click', () => {
-                        cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-                    });
-                    dotsWrap.appendChild(b);
-                    return b;
-                });
-
-                // Update active dot on scroll (mobile)
-                const setActive = (idx) => {
-                    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-                };
-
-                const getClosestIndex = () => {
-                    const trackRect = track.getBoundingClientRect();
-                    let bestIdx = 0;
-                    let bestDist = Infinity;
-
-                    cards.forEach((c, i) => {
-                        const r = c.getBoundingClientRect();
-                        const dist = Math.abs(r.left - trackRect.left);
-                        if (dist < bestDist) { bestDist = dist; bestIdx = i; }
-                    });
-                    return bestIdx;
-                };
-
-                let ticking = false;
-                track.addEventListener('scroll', () => {
-                    if (ticking) return;
-                    ticking = true;
-                    requestAnimationFrame(() => {
-                        setActive(getClosestIndex());
-                        ticking = false;
-                    });
-                });
-            });
-        })();
     </script>
 </body>
 </html>
