@@ -51,7 +51,6 @@
 
         .hamburger { display: none; font-size: 24px; background: none; border: none; cursor: pointer; color: var(--primary); }
 
-        /* MOBILE NAV FIX: Cacher le menu texte sur mobile */
         @media (max-width: 900px) {
             nav.desktop-nav { display: none; }
             .hamburger { display: block; }
@@ -101,12 +100,20 @@
 
         /* --- APPARTEMENTS --- */
         .appartements-section { padding: 80px 5%; background-color: #f1f5f9; }
-        .cards-container { display: flex; flex-direction: column; gap: 80px; max-width: 1000px; margin: 0 auto; }
+        /* MODIFICATION PC : Largeur réduite à 700px pour éviter que le portrait soit trop grand */
+        .cards-container { display: flex; flex-direction: column; gap: 80px; max-width: 700px; margin: 0 auto; }
         
         .card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.02); }
 
-        /* 1. Slider 5 Photos */
-        .slider-container { position: relative; width: 100%; height: 0; padding-bottom: 60%; background: #e2e8f0; overflow: hidden; }
+        /* 1. Slider Photos PORTRAIT */
+        .slider-container { 
+            position: relative; 
+            width: 100%; 
+            height: 0; 
+            padding-bottom: 125%; /* Ratio Portrait (4:5) */
+            background: transparent; /* Pas de fond */
+            overflow: hidden; 
+        }
         .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.6s ease; }
         .slide.active { opacity: 1; }
         .slide img { width: 100%; height: 100%; object-fit: cover; }
@@ -115,12 +122,12 @@
         .slider-btn.prev { left: 15px; }
         .slider-btn.next { right: 15px; }
 
-        /* 2. Vidéo Zone (Design "Classique") */
+        /* 2. Vidéo Zone */
         .video-wrapper { 
             position: relative; 
             background: transparent; 
             width: 100%; 
-            cursor: pointer; /* Curseur main pour indiquer que c'est cliquable */
+            cursor: pointer;
         }
         .video-wrapper video { width: 100%; display: block; max-height: 450px; object-fit: contain; }
         
@@ -135,13 +142,12 @@
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             color: #fff; font-size: 25px;
-            opacity: 0; /* Caché par défaut (quand ça joue) */
+            opacity: 0;
             transition: opacity 0.3s;
-            pointer-events: none; /* Laisse le clic passer au wrapper */
+            pointer-events: none;
         }
-        .play-overlay i { margin-left: 5px; } /* Ajustement optique icône */
+        .play-overlay i { margin-left: 5px; }
 
-        /* Quand la vidéo est en pause (ajouté via JS), on affiche le bouton */
         .video-wrapper.paused .play-overlay {
             opacity: 1;
         }
@@ -152,7 +158,6 @@
         .card-header-v2 { text-align: center; margin-bottom: 30px; }
         .card-title { font-size: 2rem; color: var(--primary); font-weight: 700; margin-bottom: 10px; line-height: 1.2; }
         
-        /* Prix Rond */
         .price-badge-round {
             display: inline-block; background: var(--primary); color: var(--white);
             padding: 8px 25px; border-radius: 50px; font-weight: 600; font-size: 1.1rem;
@@ -200,10 +205,14 @@
         footer { background: var(--primary); color: #94a3b8; text-align: center; padding: 50px 20px; font-size: 0.9rem; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* RESPONSIVE PC: Ajustements finaux */
         @media (min-width: 768px) {
             .amenities-grid-12 { grid-template-columns: repeat(3, 1fr); }
             .actions-v2 { flex-direction: row; }
             .btn-reserve { flex: 1; }
+            
+            /* Pour PC : on réduit un peu la hauteur du slider pour que ce ne soit pas trop immense */
+            .slider-container { padding-bottom: 100%; } 
         }
     </style>
 </head>
@@ -274,21 +283,25 @@
             
             <!-- CARTE 1 -->
             <div class="card">
-                <!-- Slider -->
+                <!-- Slider PORTRAIT -->
                 <div class="slider-container" id="slider1">
                     <button class="slider-btn prev" onclick="changeSlide(1, -1)"><i class="fas fa-chevron-left"></i></button>
                     <button class="slider-btn next" onclick="changeSlide(1, 1)"><i class="fas fa-chevron-right"></i></button>
-                    <div class="slide active"><img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=800&auto=format&fit=crop" alt="Piscine"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=800&auto=format&fit=crop" alt="Salon"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1556912173-3db9963ee790?q=80&w=800&auto=format&fit=crop" alt="Cuisine"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1584622050111-993a426fbf0a?q=80&w=800&auto=format&fit=crop" alt="Chambre"></div>
-                    <div class="slide"><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop" alt="SDB"></div>
+                    <div class="slide active"><img src="https://i.ibb.co/WvrjHBZH/Whats-App-Image-2026-03-11-at-14-56-29-6.jpg" alt="Piscine"></div>
+                    <div class="slide"><img src="https://i.ibb.co/qFMgS2tV/Whats-App-Image-2026-03-11-at-14-56-29-5.jpg" alt="Salon"></div>
+                    <div class="slide"><img src="https://i.ibb.co/twbDLt6F/Whats-App-Image-2026-03-11-at-14-56-29-4.jpg" alt="Cuisine"></div>
+                    <div class="slide"><img src="https://i.ibb.co/0SBX1Zg/Whats-App-Image-2026-03-11-at-14-56-29-3.jpg" alt="Chambre"></div>
+                    <div class="slide"><img src="https://i.ibb.co/zV3QxL3c/Whats-App-Image-2026-03-11-at-14-56-29-7.jpg" alt="SDB"></div>
+                    <div class="slide"><img src="https://i.ibb.co/WpczSmjk/Whats-App-Image-2026-03-11-at-14-56-30.jpg" alt="Salon"></div>
+                    <div class="slide"><img src="https://i.ibb.co/CsV1P7RW/Whats-App-Image-2026-03-11-at-14-56-29-2.jpg" alt="Salon"></div>
+                    <div class="slide"><img src="https://i.ibb.co/nSpLgqM/Whats-App-Image-2026-03-11-at-14-56-29.jpg" alt="Salon"></div>
+                    <div class="slide"><img src="https://i.ibb.co/vvzQS24r/Whats-App-Image-2026-03-11-at-14-56-28-1.jpg" alt="Salon"></div>
+                    <div class="slide"><img src="https://i.ibb.co/20Mt9Fgn/Whats-App-Image-2026-03-11-at-14-56-28.jpg" alt="Salon"></div>
                 </div>
 
-                <!-- VIDEO 1 (CLASSIC STYLE) -->
+                <!-- VIDEO 1 -->
                 <div class="video-wrapper" id="wrap1" onclick="toggleVideo('vid1', 'wrap1')">
                     <video id="vid1" src="Design sans titre (1).mp4" loop muted autoplay playsinline></video>
-                    <!-- Bouton Overlay -->
                     <div class="play-overlay">
                         <i class="fas fa-play"></i>
                     </div>
@@ -341,6 +354,7 @@
 
             <!-- CARTE 2 -->
             <div class="card">
+                <!-- Slider PORTRAIT -->
                 <div class="slider-container" id="slider2">
                     <button class="slider-btn prev" onclick="changeSlide(2, -1)"><i class="fas fa-chevron-left"></i></button>
                     <button class="slider-btn next" onclick="changeSlide(2, 1)"><i class="fas fa-chevron-right"></i></button>
@@ -351,7 +365,7 @@
                     <div class="slide"><img src="https://images.unsplash.com/photo-1522771753035-0a1539503ed5?q=80&w=800&auto=format&fit=crop" alt="Vue"></div>
                 </div>
 
-                <!-- VIDEO 2 (CLASSIC STYLE) -->
+                <!-- VIDEO 2 -->
                 <div class="video-wrapper" id="wrap2" onclick="toggleVideo('vid2', 'wrap2')">
                     <video id="vid2" src="Design sans titre (1).mp4" loop muted autoplay playsinline></video>
                     <div class="play-overlay">
@@ -413,7 +427,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 souleymane Location. Excellence et Confort à Alger.</p>
+        <p>&copy; 2026 Nakib Location. Excellence et Confort à Alger.</p>
     </footer>
 
     <script>
@@ -437,21 +451,18 @@
             slides[slideIndices[sliderId]].classList.add('active');
         }
 
-        // Video Logic (Nouveau Classique)
+        // Video Logic
         function toggleVideo(vidId, wrapId) {
             const vid = document.getElementById(vidId);
             const wrap = document.getElementById(wrapId);
 
             if (vid.paused) {
                 vid.play();
-                // Enlever la classe paused pour cacher le bouton
                 wrap.classList.remove('paused');
             } else {
                 vid.pause();
-                // Ajouter la classe paused pour montrer le bouton
                 wrap.classList.add('paused');
             }
-            // Réactive le son au premier clic si l'utilisateur veut du son
             vid.muted = false;
         }
     </script>
