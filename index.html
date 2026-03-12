@@ -8,7 +8,7 @@
     <!-- Police Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome -->
+    <!-- FontAwesome (Logos Officiels) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -100,19 +100,16 @@
 
         /* --- APPARTEMENTS --- */
         .appartements-section { padding: 80px 5%; background-color: #f1f5f9; }
-        /* MODIFICATION PC : Largeur réduite à 700px pour éviter que le portrait soit trop grand */
+        
+        /* Limitation largeur PC à 700px */
         .cards-container { display: flex; flex-direction: column; gap: 80px; max-width: 700px; margin: 0 auto; }
         
         .card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.02); }
 
-        /* 1. Slider Photos PORTRAIT */
+        /* 1. Slider Photos PORTRAIT (4:5) */
         .slider-container { 
-            position: relative; 
-            width: 100%; 
-            height: 0; 
-            padding-bottom: 125%; /* Ratio Portrait (4:5) */
-            background: transparent; /* Pas de fond */
-            overflow: hidden; 
+            position: relative; width: 100%; height: 0; padding-bottom: 125%; 
+            background: transparent; overflow: hidden; 
         }
         .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.6s ease; }
         .slide.active { opacity: 1; }
@@ -123,69 +120,37 @@
         .slider-btn.next { right: 15px; }
 
         /* 2. Vidéo Zone */
-        .video-wrapper { 
-            position: relative; 
-            background: transparent; 
-            width: 100%; 
-            cursor: pointer;
-        }
+        .video-wrapper { position: relative; background: transparent; width: 100%; cursor: pointer; }
         .video-wrapper video { width: 100%; display: block; max-height: 450px; object-fit: contain; }
         
         /* Bouton Play Central */
         .play-overlay {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 70px; height: 70px;
-            background: rgba(0,0,0,0.6);
-            border: 3px solid #fff;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: #fff; font-size: 25px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 70px; height: 70px; background: rgba(0,0,0,0.6); border: 3px solid #fff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: #fff; font-size: 25px;
+            opacity: 0; transition: opacity 0.3s; pointer-events: none;
         }
         .play-overlay i { margin-left: 5px; }
-
-        .video-wrapper.paused .play-overlay {
-            opacity: 1;
-        }
+        .video-wrapper.paused .play-overlay { opacity: 1; }
 
         /* 3. Contenu Card */
         .card-content { padding: 40px; }
-        
         .card-header-v2 { text-align: center; margin-bottom: 30px; }
         .card-title { font-size: 2rem; color: var(--primary); font-weight: 700; margin-bottom: 10px; line-height: 1.2; }
-        
-        .price-badge-round {
-            display: inline-block; background: var(--primary); color: var(--white);
-            padding: 8px 25px; border-radius: 50px; font-weight: 600; font-size: 1.1rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
+        .price-badge-round { display: inline-block; background: var(--primary); color: var(--white); padding: 8px 25px; border-radius: 50px; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
         .card-desc { text-align: center; margin-bottom: 40px; font-size: 1.05rem; color: #475569; max-width: 800px; margin-left: auto; margin-right: auto; }
 
         /* 4. Grille 12 équipements */
-        .amenities-grid-12 {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-bottom: 40px;
-        }
-        .am-box {
-            border: 1px solid #e2e8f0; background: #f8fafc; border-radius: 4px; padding: 12px;
-            display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--primary); font-weight: 500;
-        }
+        .amenities-grid-12 { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-bottom: 40px; }
+        .am-box { border: 1px solid #e2e8f0; background: #f8fafc; border-radius: 4px; padding: 12px; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--primary); font-weight: 500; }
         .am-box i { color: var(--accent); width: 20px; text-align: center; font-size: 1rem; }
 
         /* 5. Carte Tarifs */
-        .pricing-card {
-            background: var(--white); border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px;
-            margin-bottom: 30px; position: relative; overflow: hidden; box-shadow: inset 0 0 30px rgba(0,0,0,0.01);
-        }
+        .pricing-card { background: var(--white); border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; margin-bottom: 30px; position: relative; overflow: hidden; box-shadow: inset 0 0 30px rgba(0,0,0,0.01); }
         .pricing-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--gold); }
         .pricing-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; border-bottom: 1px dashed #cbd5e1; padding-bottom: 15px; }
         .pricing-header i { color: var(--gold); font-size: 1.5rem; }
         .pricing-header h4 { font-size: 1.3rem; font-weight: 700; color: var(--primary); }
-        
         .price-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.95rem; }
         .price-row:last-child { margin-bottom: 0; }
         .p-label { color: #64748b; font-weight: 500; }
@@ -193,9 +158,19 @@
 
         /* 6. Boutons Actions */
         .actions-v2 { display: flex; flex-direction: column; gap: 15px; }
+        
         .btn-reserve {
-            display: flex; justify-content: center; align-items: center; gap: 10px; padding: 18px; border-radius: 10px;
-            color: white; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: transform 0.2s;
+            display: flex; 
+            justify-content: center; /* Centre horizontalement */
+            align-items: center;     /* Centre verticalement */
+            gap: 10px; 
+            padding: 18px; 
+            border-radius: 10px;
+            color: white; 
+            text-decoration: none; 
+            font-weight: 700; /* Texte un peu plus gras */
+            font-size: 1.2rem; /* Texte un peu plus grand */
+            transition: transform 0.2s;
         }
         .btn-reserve:hover { transform: translateY(-2px); opacity: 0.95; }
         .btn-wa { background: var(--whatsapp); box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
@@ -205,13 +180,11 @@
         footer { background: var(--primary); color: #94a3b8; text-align: center; padding: 50px 20px; font-size: 0.9rem; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* RESPONSIVE PC: Ajustements finaux */
+        /* RESPONSIVE PC */
         @media (min-width: 768px) {
             .amenities-grid-12 { grid-template-columns: repeat(3, 1fr); }
             .actions-v2 { flex-direction: row; }
             .btn-reserve { flex: 1; }
-            
-            /* Pour PC : on réduit un peu la hauteur du slider pour que ce ne soit pas trop immense */
             .slider-container { padding-bottom: 100%; } 
         }
     </style>
@@ -346,8 +319,13 @@
                     </div>
 
                     <div class="actions-v2">
-                        <a href="#" class="btn-reserve btn-wa"><i class="fab fa-whatsapp"></i> Réserver sur WhatsApp</a>
-                        <a href="#" class="btn-reserve btn-ab"><i class="fab fa-airbnb"></i> Voir sur Airbnb</a>
+                        <!-- BOUTON WHATSAPP MODIFIÉ : Texte "WhatsApp" + Logo Centré -->
+                        <a href="#" class="btn-reserve btn-wa">
+                            <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i> WhatsApp
+                        </a>
+                        <a href="#" class="btn-reserve btn-ab">
+                            <i class="fab fa-airbnb"></i> Voir sur Airbnb
+                        </a>
                     </div>
                 </div>
             </div>
@@ -410,8 +388,13 @@
                     </div>
 
                     <div class="actions-v2">
-                        <a href="#" class="btn-reserve btn-wa"><i class="fab fa-whatsapp"></i> Réserver sur WhatsApp</a>
-                        <a href="#" class="btn-reserve btn-ab"><i class="fab fa-airbnb"></i> Voir sur Airbnb</a>
+                        <!-- BOUTON WHATSAPP MODIFIÉ -->
+                        <a href="#" class="btn-reserve btn-wa">
+                            <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i> WhatsApp
+                        </a>
+                        <a href="#" class="btn-reserve btn-ab">
+                            <i class="fab fa-airbnb"></i> Voir sur Airbnb
+                        </a>
                     </div>
                 </div>
             </div>
