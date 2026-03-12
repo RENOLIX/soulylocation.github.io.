@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nakib Location | Appartements & Véhicules Alger</title>
+    
+    <!-- Police Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #0f172a;
+            --primary-light: #1e293b;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --bg-light: #f8fafc;
+            --text-dark: #334155;
+            --text-light: #94a3b8;
+            --white: #ffffff;
+            --whatsapp: #25D366;
+            --airbnb: #FF5A5F;
+            --gold: #d97706;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; line-height: 1.6; }
+        html { scroll-behavior: smooth; }
+
+        /* --- HEADER & NAV --- */
+        header {
+            position: fixed; top: 0; width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%;
+        }
+
+        .logo img { height: 40px; width: auto; display: block; }
+
+        nav.desktop-nav { display: flex; gap: 30px; }
+        nav a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.95rem; transition: color 0.3s; position: relative; }
+        nav a:hover { color: var(--accent); }
+        nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: var(--accent); transition: width 0.3s; }
+        nav a:hover::after { width: 100%; }
+
+        .hamburger { display: none; font-size: 24px; background: none; border: none; cursor: pointer; color: var(--primary); }
+
+        /* MOBILE NAV FIX: Cacher le menu texte sur mobile */
+        @media (max-width: 900px) {
+            nav.desktop-nav { display: none; }
+            .hamburger { display: block; }
+        }
+
+        /* Drawer Mobile */
+        .drawer-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: rgba(0,0,0,0.6); z-index: 1001; opacity: 0; visibility: hidden; transition: 0.3s;
+        }
+        .drawer {
+            position: fixed; top: 0; right: -300px; width: 280px; height: 100vh;
+            background-color: var(--white); z-index: 1002;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.1); transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            padding: 80px 25px; display: flex; flex-direction: column; gap: 20px;
+        }
+        .drawer.open { transform: translateX(-300px); }
+        .drawer-overlay.open { opacity: 1; visibility: visible; }
+        .drawer a { text-decoration: none; color: var(--primary); font-size: 18px; font-weight: 600; padding-bottom: 10px; border-bottom: 1px solid #e2e8f0; }
+        .close-drawer { position: absolute; top: 25px; right: 25px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-dark); }
+
+        /* --- HERO SECTION (Intacte) --- */
+        .hero {
+            position: relative; height: 100vh; min-height: 600px;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white);
+            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.6)), 
+                        url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            padding: 0 20px;
+        }
+        .hero-content { max-width: 900px; z-index: 2; animation: fadeIn 1s ease-out; }
+        .hero h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 700; margin-bottom: 10px; line-height: 1.1; letter-spacing: -1px; }
+        .hero h2 { font-size: clamp(1.2rem, 3vw, 2rem); font-weight: 300; color: #cbd5e1; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 3px; }
+        .hero-btns { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .btn { padding: 15px 35px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; }
+        .btn-primary { background-color: var(--accent); color: var(--white); box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); }
+        .btn-primary:hover { background-color: var(--accent-hover); transform: translateY(-2px); }
+        .btn-outline { background-color: transparent; border: 2px solid var(--white); color: var(--white); }
+        .btn-outline:hover { background-color: var(--white); color: var(--primary); transform: translateY(-2px); }
+
+        /* --- SECTION À PROPOS (Intacte) --- */
+        .section-title { text-align: center; font-size: 2.2rem; font-weight: 700; color: var(--primary); margin-bottom: 15px; }
+        .subtitle { text-align: center; color: var(--text-light); margin-bottom: 50px; max-width: 600px; margin: 0 auto; }
+        .about-section { padding: 80px 5%; max-width: 1000px; margin: 0 auto; text-align: center; }
+        .airport-badge { margin-top: 30px; display: inline-flex; align-items: center; gap: 10px; background: var(--white); border: 1px solid #e2e8f0; padding: 12px 25px; border-radius: 50px; color: var(--primary); font-weight: 600; box-shadow: 0 4px 20px rgba(0,0,0,0.06); font-size: clamp(0.9rem, 2.5vw, 1.1rem); }
+        .airport-badge i { color: var(--accent); }
+
+        /* --- APPARTEMENTS (Nouvelle Version) --- */
+        .appartements-section { padding: 80px 5%; background-color: #f1f5f9; }
+        .cards-container { display: flex; flex-direction: column; gap: 80px; max-width: 1000px; margin: 0 auto; }
+        
+        .card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.02); }
+
+        /* 1. Slider 5 Photos */
+        .slider-container { position: relative; width: 100%; height: 0; padding-bottom: 60%; background: #e2e8f0; overflow: hidden; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.6s ease; }
+        .slide.active { opacity: 1; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.8); border: none; width: 45px; height: 45px; border-radius: 50%; color: var(--primary); cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .slider-btn:hover { background: var(--white); transform: translateY(-50%) scale(1.1); }
+        .slider-btn.prev { left: 15px; }
+        .slider-btn.next { right: 15px; }
+
+        /* 2. Vidéo Zone */
+        .video-wrapper { position: relative; background: #000; width: 100%; border-bottom: 1px solid #e2e8f0; }
+        .video-wrapper video { width: 100%; display: block; max-height: 450px; object-fit: contain; }
+        .video-controls {
+            padding: 15px; background: #1e293b; display: flex; align-items: center; justify-content: space-between;
+        }
+        .v-btn-group { display: flex; gap: 10px; }
+        .v-btn {
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;
+            padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.9rem;
+            display: flex; align-items: center; gap: 8px; transition: 0.3s;
+        }
+        .v-btn:hover { background: var(--accent); border-color: var(--accent); }
+
+        /* 3. Contenu Card */
+        .card-content { padding: 40px; }
+        
+        .card-header-v2 { text-align: center; margin-bottom: 30px; }
+        .card-title { font-size: 2rem; color: var(--primary); font-weight: 700; margin-bottom: 10px; line-height: 1.2; }
+        
+        /* Prix Rond */
+        .price-badge-round {
+            display: inline-block; background: var(--primary); color: var(--white);
+            padding: 8px 25px; border-radius: 50px; font-weight: 600; font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .card-desc { text-align: center; margin-bottom: 40px; font-size: 1.05rem; color: #475569; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+        /* 4. Grille 12 équipements (Booking Style) */
+        .amenities-grid-12 {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-bottom: 40px;
+        }
+        .am-box {
+            border: 1px solid #e2e8f0; background: #f8fafc; border-radius: 4px; padding: 12px;
+            display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--primary); font-weight: 500;
+        }
+        .am-box i { color: var(--accent); width: 20px; text-align: center; font-size: 1rem; }
+
+        /* 5. Carte Tarifs Exclusifs */
+        .pricing-card {
+            background: var(--white); border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px;
+            margin-bottom: 30px; position: relative; overflow: hidden; box-shadow: inset 0 0 30px rgba(0,0,0,0.01);
+        }
+        .pricing-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--gold); }
+        .pricing-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; border-bottom: 1px dashed #cbd5e1; padding-bottom: 15px; }
+        .pricing-header i { color: var(--gold); font-size: 1.5rem; }
+        .pricing-header h4 { font-size: 1.3rem; font-weight: 700; color: var(--primary); }
+        
+        .price-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.95rem; }
+        .price-row:last-child { margin-bottom: 0; }
+        .p-label { color: #64748b; font-weight: 500; }
+        .p-value { font-weight: 700; color: var(--primary); }
+
+        /* 6. Boutons Actions */
+        .actions-v2 { display: flex; flex-direction: column; gap: 15px; }
+        .btn-reserve {
+            display: flex; justify-content: center; align-items: center; gap: 10px; padding: 18px; border-radius: 10px;
+            color: white; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: transform 0.2s;
+        }
+        .btn-reserve:hover { transform: translateY(-2px); opacity: 0.95; }
+        .btn-wa { background: var(--whatsapp); box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+        .btn-ab { background: var(--airbnb); box-shadow: 0 4px 15px rgba(255, 90, 95, 0.3); }
+
+        /* Footer */
+        footer { background: var(--primary); color: #94a3b8; text-align: center; padding: 50px 20px; font-size: 0.9rem; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (min-width: 768px) {
+            .amenities-grid-12 { grid-template-columns: repeat(3, 1fr); }
+            .actions-v2 { flex-direction: row; }
+            .btn-reserve { flex: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Nav (Mobile corrigé) -->
+    <header>
+        <div class="logo">
+            <!-- Remplacez par votre logo -->
+            <img src="https://via.placeholder.com/150x50/0f172a/ffffff?text=NAKIB+LOGO" alt="Logo Nakib">
+        </div>
+        <nav class="desktop-nav">
+            <a href="#accueil">Accueil</a>
+            <a href="#appartements">Appartements</a>
+            <a href="#voitures">Véhicules</a>
+            <a href="#a-propos">À propos</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button class="hamburger" onclick="toggleDrawer()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div class="drawer-overlay" onclick="toggleDrawer()"></div>
+    <div class="drawer" id="mobile-drawer">
+        <button class="close-drawer" onclick="toggleDrawer()">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#accueil" onclick="toggleDrawer()">Accueil</a>
+        <a href="#appartements" onclick="toggleDrawer()">Appartements</a>
+        <a href="#voitures" onclick="toggleDrawer()">Véhicules</a>
+        <a href="#a-propos" onclick="toggleDrawer()">À propos</a>
+        <a href="#contact" onclick="toggleDrawer()">Contact</a>
+    </div>
+
+    <!-- Hero Section (REMISE EN PLACE) -->
+    <section class="hero" id="accueil">
+        <div class="hero-content">
+            <h1>Séjournez avec Élégance à Alger</h1>
+            <h2>Confort • Sécurité • Luxe</h2>
+            <div class="hero-btns">
+                <a href="#appartements" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Voir les Appartements
+                </a>
+                <a href="#voitures" class="btn btn-outline">
+                    <i class="fas fa-car"></i> Louer un Véhicule
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- A Propos Section (REMISE EN PLACE) -->
+    <section class="about-section" id="a-propos">
+        <h2 class="section-title">Pourquoi nous choisir ?</h2>
+        <p class="subtitle">Votre confort est notre priorité absolue.</p>
+        <p style="color: #475569; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
+            Bienvenue chez <strong>Nakib Location</strong>. Nous redéfinissons l'expérience de location à Alger en vous proposant des biens d'exception, maintenus selon les standards internationaux.
+        </p>
+        <div class="airport-badge">
+            <i class="fas fa-plane-departure"></i>
+            <span>À seulement 9km de l'aéroport d'Alger</span>
+        </div>
+    </section>
+
+    <!-- Appartements Section (NOUVELLE VERSION) -->
+    <section class="appartements-section" id="appartements">
+        <div class="cards-container">
+            
+            <!-- CARTE 1 -->
+            <div class="card">
+                <!-- 1. Slider 5 Photos -->
+                <div class="slider-container" id="slider1">
+                    <button class="slider-btn prev" onclick="changeSlide(1, -1)"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn next" onclick="changeSlide(1, 1)"><i class="fas fa-chevron-right"></i></button>
+                    <!-- 5 Images -->
+                    <div class="slide active"><img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=800&auto=format&fit=crop" alt="Piscine"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=800&auto=format&fit=crop" alt="Salon"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1556912173-3db9963ee790?q=80&w=800&auto=format&fit=crop" alt="Cuisine"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1584622050111-993a426fbf0a?q=80&w=800&auto=format&fit=crop" alt="Chambre"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop" alt="SDB"></div>
+                </div>
+
+                <!-- 2. Vidéo sous les photos -->
+                <div class="video-wrapper">
+                    <!-- REMPLACEZ LE LIEN SRC PAR VOTRE VIDEO GITHUB RAW -->
+                    <video id="vid1" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" loop muted autoplay playsinline></video>
+                    <div class="video-controls">
+                        <div class="v-btn-group">
+                            <button class="v-btn" onclick="togglePlay('vid1', this)">
+                                <i class="fas fa-stop"></i> <span>Stop</span>
+                            </button>
+                            <button class="v-btn" onclick="toggleMute('vid1', this)">
+                                <i class="fas fa-volume-mute"></i> <span>Son</span>
+                            </button>
+                        </div>
+                        <span style="color: #94a3b8; font-size: 0.8rem;">Visite Vidéo</span>
+                    </div>
+                </div>
+
+                <!-- 3. Contenu -->
+                <div class="card-content">
+                    <div class="card-header-v2">
+                        <h3 class="card-title">Appartement avec Piscine</h3>
+                        <div class="price-badge-round">À partir de 12 000 DA</div>
+                    </div>
+                    
+                    <p class="card-desc">
+                        Location d'un appartement F2 meublé et entièrement équipé, avec une piscine chauffée et couverte, sans vis-à-vis. Sous réserve de disponibilité. In sha Allah.
+                    </p>
+
+                    <!-- 4. Grille 12 équipements -->
+                    <div class="amenities-grid-12">
+                        <div class="am-box"><i class="fas fa-door-open"></i> 1 Cuisine, chambre, salon</div>
+                        <div class="am-box"><i class="fas fa-bath"></i> 2 Salles de bain</div>
+                        <div class="am-box"><i class="fas fa-toilet"></i> 2 WC</div>
+                        <div class="am-box"><i class="fas fa-baby"></i> Lit parapluie & chaise haute</div>
+                        <div class="am-box"><i class="fas fa-coffee"></i> Cafetière Senseo & Nespresso</div>
+                        <div class="am-box"><i class="fas fa-water"></i> Piscine (Extracteur/Déshumid.)</div>
+                        <div class="am-box"><i class="fas fa-tshirt"></i> Sèche linge</div>
+                        <div class="am-box"><i class="fas fa-snowflake"></i> Climatisation & Chauffage</div>
+                        <div class="am-box"><i class="fas fa-wifi"></i> Wifi Fibre optique</div>
+                        <div class="am-box"><i class="fas fa-parking"></i> Parking ou Garage</div>
+                        <div class="am-box"><i class="fas fa-users"></i> Capacité 5 personnes</div>
+                        <div class="am-box"><i class="fas fa-map-marker-alt"></i> Hay Benchoubane, Rouiba</div>
+                    </div>
+
+                    <!-- 5. Carte Prix -->
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <i class="fas fa-crown"></i>
+                            <h4>Tarifs Exclusifs</h4>
+                        </div>
+                        <div class="price-row"><span class="p-label">Hors saison</span><span class="p-value">12 000 DA/jour</span></div>
+                        <div class="price-row"><span class="p-label">Vacances scolaires (Oct, Déc, Avr)</span><span class="p-value">14 000 DA/jour</span></div>
+                        <div class="price-row"><span class="p-label">Juin et Septembre</span><span class="p-value">16 000 DA/jour</span></div>
+                        <div class="price-row"><span class="p-label">Juillet et Août</span><span class="p-value">18 000 DA/jour</span></div>
+                        <div class="price-row"><span class="p-label">Créneau horaire (3h)</span><span class="p-value">4 000 DA</span></div>
+                    </div>
+
+                    <!-- 6. Boutons -->
+                    <div class="actions-v2">
+                        <a href="#" class="btn-reserve btn-wa"><i class="fab fa-whatsapp"></i> Réserver sur WhatsApp</a>
+                        <a href="#" class="btn-reserve btn-ab"><i class="fab fa-airbnb"></i> Voir sur Airbnb</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARTE 2 (Identique structure) -->
+            <div class="card">
+                <div class="slider-container" id="slider2">
+                    <button class="slider-btn prev" onclick="changeSlide(2, -1)"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn next" onclick="changeSlide(2, 1)"><i class="fas fa-chevron-right"></i></button>
+                    <div class="slide active"><img src="https://images.unsplash.com/photo-1502005229762-cf1afd186ed2?q=80&w=800&auto=format&fit=crop" alt="Salon"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1484154218962-a1c002085d2f?q=80&w=800&auto=format&fit=crop" alt="Cuisine"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=800&auto=format&fit=crop" alt="Chambre"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=800&auto=format&fit=crop" alt="SDB"></div>
+                    <div class="slide"><img src="https://images.unsplash.com/photo-1522771753035-0a1539503ed5?q=80&w=800&auto=format&fit=crop" alt="Vue"></div>
+                </div>
+
+                <div class="video-wrapper">
+                    <!-- VIDEO 2 -->
+                    <video id="vid2" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" loop muted autoplay playsinline></video>
+                    <div class="video-controls">
+                        <div class="v-btn-group">
+                            <button class="v-btn" onclick="togglePlay('vid2', this)">
+                                <i class="fas fa-stop"></i> <span>Stop</span>
+                            </button>
+                            <button class="v-btn" onclick="toggleMute('vid2', this)">
+                                <i class="fas fa-volume-mute"></i> <span>Son</span>
+                            </button>
+                        </div>
+                        <span style="color: #94a3b8; font-size: 0.8rem;">Visite Vidéo</span>
+                    </div>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header-v2">
+                        <h3 class="card-title">Appartement Familial Deluxe</h3>
+                        <div class="price-badge-round">À partir de 14 000 DA</div>
+                    </div>
+                    
+                    <p class="card-desc">
+                        Grand appartement familial au centre ville, proche de toutes commodités. Idéal pour les familles nombreuses. In sha Allah.
+                    </p>
+
+                    <div class="amenities-grid-12">
+                        <div class="am-box"><i class="fas fa-door-open"></i> 1 Cuisine, 2 chambres, salon</div>
+                        <div class="am-box"><i class="fas fa-bath"></i> 1 Salle de bain italienne</div>
+                        <div class="am-box"><i class="fas fa-toilet"></i> 1 WC séparé</div>
+                        <div class="am-box"><i class="fas fa-baby"></i> Lit bébé disponible</div>
+                        <div class="am-box"><i class="fas fa-coffee"></i> Machine à café</div>
+                        <div class="am-box"><i class="fas fa-tv"></i> TV 4K Netflix</div>
+                        <div class="am-box"><i class="fas fa-tshirt"></i> Machine à laver</div>
+                        <div class="am-box"><i class="fas fa-snowflake"></i> Climatisation centrale</div>
+                        <div class="am-box"><i class="fas fa-wifi"></i> Wifi Fibre optique</div>
+                        <div class="am-box"><i class="fas fa-parking"></i> Garage sous-sol</div>
+                        <div class="am-box"><i class="fas fa-users"></i> Capacité 6 personnes</div>
+                        <div class="am-box"><i class="fas fa-map-marker-alt"></i> Alger Centre</div>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <i class="fas fa-crown"></i>
+                            <h4>Tarifs Exclusifs</h4>
+                        </div>
+                        <div class="price-row"><span class="p-label">Hors saison</span><span class="p-value">14 000 DA/jour</span></div>
+                        <div class="price-row"><span class="p-label">Vacances scolaires</span><span class="p-value">16 000 DA/jour</span></div>
+                        <div class="price-row"><span class="p-label">Juin et Septembre</span><span class="p-value">18 000 DA/jour</span></div>
+                        <div class="price-row"><span class="p-label">Juillet et Août</span><span class="p-value">20 000 DA/jour</span></div>
+                    </div>
+
+                    <div class="actions-v2">
+                        <a href="#" class="btn-reserve btn-wa"><i class="fab fa-whatsapp"></i> Réserver sur WhatsApp</a>
+                        <a href="#" class="btn-reserve btn-ab"><i class="fab fa-airbnb"></i> Voir sur Airbnb</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section Véhicules (REMISE EN PLACE) -->
+    <section id="voitures" style="padding: 100px 5%; background: var(--white); text-align: center;">
+        <i class="fas fa-car-side" style="font-size: 4rem; color: #cbd5e1; margin-bottom: 20px;"></i>
+        <h2 class="section-title">Flotte de Véhicules</h2>
+        <p style="color: var(--text-light);">Notre gamme de véhicules premium sera disponible très prochainement.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Nakib Location. Excellence et Confort à Alger.</p>
+    </footer>
+
+    <script>
+        // Drawer Logic
+        function toggleDrawer() {
+            const drawer = document.getElementById('mobile-drawer');
+            const overlay = document.querySelector('.drawer-overlay');
+            drawer.classList.toggle('open');
+            overlay.classList.toggle('open');
+        }
+
+        // Slider Logic
+        const slideIndices = { 1: 0, 2: 0 };
+        function changeSlide(sliderId, direction) {
+            const slider = document.getElementById(`slider${sliderId}`);
+            const slides = slider.querySelectorAll('.slide');
+            slides[slideIndices[sliderId]].classList.remove('active');
+            slideIndices[sliderId] += direction;
+            if (slideIndices[sliderId] >= slides.length) slideIndices[sliderId] = 0;
+            if (slideIndices[sliderId] < 0) slideIndices[sliderId] = slides.length - 1;
+            slides[slideIndices[sliderId]].classList.add('active');
+        }
+
+        // Video Logic (Play/Stop & Mute/Unmute)
+        function togglePlay(vidId, btn) {
+            const vid = document.getElementById(vidId);
+            const icon = btn.querySelector('i');
+            const span = btn.querySelector('span');
+            if (vid.paused) {
+                vid.play();
+                icon.className = 'fas fa-stop';
+                span.innerText = 'Stop';
+            } else {
+                vid.pause();
+                icon.className = 'fas fa-play';
+                span.innerText = 'Play';
+            }
+        }
+
+        function toggleMute(vidId, btn) {
+            const vid = document.getElementById(vidId);
+            const icon = btn.querySelector('i');
+            vid.muted = !vid.muted;
+            if (vid.muted) icon.className = 'fas fa-volume-mute';
+            else icon.className = 'fas fa-volume-up';
+        }
+    </script>
+</body>
+</html>
