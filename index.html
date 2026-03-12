@@ -38,7 +38,7 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             z-index: 1000;
             display: flex; justify-content: space-between; align-items: center;
-            padding: 5px 5%; /* Padding réduit pour compenser la taille du logo */
+            padding: 5px 5%;
         }
 
         .logo img { 
@@ -58,7 +58,7 @@
         @media (max-width: 900px) {
             nav.desktop-nav { display: none; }
             .hamburger { display: block; }
-            .logo img { height: 80px; } /* Logo plus petit sur mobile pour éviter de prendre tout l'écran */
+            .logo img { height: 80px; }
         }
 
         /* Drawer Mobile */
@@ -114,6 +114,23 @@
             position: relative; width: 100%; height: 0; padding-bottom: 125%; 
             background: transparent; overflow: hidden; 
         }
+
+        /* Effet vague blanche en bas des photos */
+        .slider-container::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 100%;
+            height: 90px;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: 100% 100%;
+            pointer-events: none;
+            z-index: 6;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 160' preserveAspectRatio='none'%3E%3Cpath fill='%23ffffff' d='M0,96L48,85.3C96,75,192,53,288,53.3C384,53,480,75,576,85.3C672,96,768,96,864,85.3C960,75,1056,53,1152,48C1248,43,1344,53,1392,58.7L1440,64L1440,160L1392,160C1344,160,1248,160,1152,160C1056,160,960,160,864,160C768,160,672,160,576,160C480,160,384,160,288,160C192,160,96,160,48,160L0,160Z'/%3E%3C/svg%3E");
+        }
+
         .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.6s ease; }
         .slide.active { opacity: 1; }
         .slide img { width: 100%; height: 100%; object-fit: cover; }
@@ -179,7 +196,8 @@
             .amenities-grid-12 { grid-template-columns: repeat(3, 1fr); }
             .actions-v2 { flex-direction: row; }
             .btn-reserve { flex: 1; }
-            .slider-container { padding-bottom: 100%; } 
+            .slider-container { padding-bottom: 100%; }
+            .slider-container::after { height: 110px; }
         }
     </style>
 </head>
@@ -398,8 +416,13 @@
         function toggleVideo(vidId, wrapId) {
             const vid = document.getElementById(vidId);
             const wrap = document.getElementById(wrapId);
-            if (vid.paused) { vid.play(); wrap.classList.remove('paused'); } 
-            else { vid.pause(); wrap.classList.add('paused'); }
+            if (vid.paused) { 
+                vid.play(); 
+                wrap.classList.remove('paused'); 
+            } else { 
+                vid.pause(); 
+                wrap.classList.add('paused'); 
+            }
             vid.muted = false;
         }
     </script>
