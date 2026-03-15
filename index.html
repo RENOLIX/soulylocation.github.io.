@@ -282,6 +282,44 @@
         .warning-list li { margin-bottom: 10px; padding-left: 20px; position: relative; }
         .warning-list li::before { content: '•'; color: var(--warning-border); position: absolute; left: 0; font-weight: bold; }
 
+        /* Conditions appartement */
+        .apartment-conditions { text-align: left; }
+        .apartment-conditions .warning-title { justify-content: flex-start; }
+        .conditions-list { margin-top: 20px; }
+        .conditions-section { margin-bottom: 22px; }
+        .conditions-section h4 {
+            color: var(--warning-text);
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .conditions-section h4 i {
+            color: var(--gold);
+            width: 20px;
+            text-align: center;
+        }
+        .conditions-section ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .conditions-section li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 8px;
+            color: #7c2d12;
+            font-size: 0.97rem;
+        }
+        .conditions-section li i {
+            color: var(--warning-border);
+            margin-top: 4px;
+            min-width: 14px;
+        }
+
         /* About Text Block */
         .about-text-block {
             text-align: center;
@@ -347,6 +385,9 @@
                 <a href="#appartements" class="btn btn-primary">
                     <i class="fas fa-home"></i> Voir les Appartements
                 </a>
+                <a href="#warning-block" class="btn btn-conditions">
+                    <i class="fas fa-file-contract"></i> Nos Conditions
+                </a>
                 <a href="#voitures" class="btn btn-outline">
                     <i class="fas fa-car"></i> Voir les Véhicules
                 </a>
@@ -366,7 +407,7 @@
             Bienvenue chez <strong>Souleymane Location</strong>. Découvrez nos appartements chaleureux et fonctionnels, conçus pour vous offrir tout le confort nécessaire au quotidien dans un cadre soigné et accueillant.
         </p>
         <a class="airport-badge"
-         href="https://goo.gl/maps/trboYWzFUNRAi9FH9"
+         href="https://www.google.com/maps?q=36.710306,3.267083"
          target="_blank"
          rel="noopener noreferrer"
          aria-label="Voir la localisation sur Google Maps">
@@ -385,9 +426,8 @@
             <div class="map-address">
                 <i class="fas fa-map-marker-alt"></i> 38 route brasli et madjbar hay benchoubene Rouiba 16012
             </div>
-            <!-- iFrame sans clé API qui charge directement l'adresse demandée -->
             <iframe 
-                src="https://maps.google.com/maps?q=38%20route%20brasli%20et%20madjbar%20hay%20benchoubene%20Rouiba%2016012&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                src="https://maps.google.com/maps?ll=36.710306,3.267083&q=36.710306,3.267083&z=17&output=embed" 
                 allowfullscreen="" 
                 loading="lazy" 
                 referrerpolicy="no-referrer-when-downgrade">
@@ -543,10 +583,74 @@
             </div>
 
             <!-- WARNING BLOCK AVANT VOITURE -->
-            <div class="warning-block">
-                <div class="warning-title"><i class="fas fa-thumbtack"></i> CONDITION DE LOCATION</div>
-                <p class="warning-content">Réservation uniquement avec un acompte obligatoire. baraka allahu fikom.</p>
-                <p class="warning-sub">conditions. photos et informations supplémentaire en privé. notre equipe est a votre disposition pour toute demande personalisée.</p>
+            <div id="warning-block" class="warning-block apartment-conditions">
+                <div class="warning-title"><i class="fas fa-house"></i> Conditions de Réservation</div>
+                <p class="warning-content">
+                    Bienvenue chez vous ! Nous serons ravis de vous accueillir et de vous offrir un séjour agréable et reposant.
+                    Afin de garantir le confort de tous, merci de prendre connaissance de nos conditions de réservation :
+                </p>
+
+                <div class="conditions-list">
+                    <div class="conditions-section">
+                        <h4><i class="fas fa-calendar-check"></i> Réservation</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i><span>La réservation est confirmée après réception d’un acompte de 30 à 50 % du montant total, selon la durée du séjour.</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>Le solde restant sera réglé le jour de votre arrivée.</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>Nous fonctionnons sur une base de confiance, c’est pourquoi aucune caution n’est demandée. Toutefois, tout objet perdu ou cassé pourra être facturé.</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="conditions-section">
+                        <h4><i class="fas fa-ban"></i> Annulation</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i><span>En cas d’annulation, l’acompte peut être conservé, notamment en cas d’annulation de dernière minute.</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="conditions-section">
+                        <h4><i class="fas fa-clock"></i> Arrivée & Départ</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i><span>Arrivée : à partir de 15h.</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>Départ : avant 12h pour l’appartement avec cour.</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>Départ : avant 11h pour l’appartement avec piscine.</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="conditions-section">
+                        <h4><i class="fas fa-users"></i> Capacité & Règles de vie</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i><span>Le logement peut accueillir jusqu’à 5 personnes maximum, plus un bébé.</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>Logement non-fumeur à l’intérieur.</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>Animaux non admis.</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="conditions-section">
+                        <h4><i class="fas fa-broom"></i> Ménage</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i><span>Nous vous demandons de rendre l’appartement dans un état de propreté correct.</span></li>
+                            <li><i class="fas fa-check-circle"></i><span>Si le logement est rendu très sale ou mal rangé, des frais de ménage de 2000 DA pourront être appliqués.</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="conditions-section">
+                        <h4><i class="fas fa-scale-balanced"></i> Réglementation</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i><span>Conformément à la réglementation locale et à notre règlement intérieur, les couples doivent être mariés pour accéder au logement.</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="conditions-section">
+                        <h4><i class="fas fa-shield-heart"></i> Sécurité</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i><span>Pour la sécurité de tous, les enfants doivent être surveillés en permanence, en particulier autour de la piscine. La responsabilité de leur surveillance incombe aux parents ou accompagnateurs.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="warning-sub" style="opacity:1; margin-top:20px;">
+                    <i class="fas fa-star"></i> En réservant, vous acceptez ces conditions. Nous vous souhaitons un excellent séjour et espérons vous accueillir très bientôt !
+                </p>
             </div>
 
             <!-- Section Véhicules ID wrapper -->
@@ -570,14 +674,14 @@
                         <div class="price-badge-round">7000DA/jour dégressif en fonction de la durée et de la saison</div>
                     </div>
                     
-                    <p class="card-desc">Location d'une fiat tipo noir 1.6 essence, avec boite automatique, toutes options avec jantes alu. élegance et performance pour tous vos deplacements.</p>
+                    <p class="card-desc">Location d'une fiat tipo noir 1.6 essence, avec boite automatique. élegance et performance pour tous vos deplacements. Véhicule récent, parfait état et équipé pour votre confort et sécurité. Très grand coffre</p>
 
                     <div class="amenities-grid-12">
                         <div class="am-box"><i class="fas fa-gas-pump"></i> 1.6 essence - boite automatique</div>
                         <div class="am-box"><i class="fas fa-gauge-high"></i> Régulateur de vitesse</div>
                         <div class="am-box"><i class="fas fa-snowflake"></i> Climatisation</div>
                         <div class="am-box"><i class="fab fa-usb"></i> Port USB</div>
-                        <div class="am-box"><i class="fas fa-shield-halved"></i> 4 Airbags</div>
+                        <div class="am-box"><i class="fas fa-shield-halved"></i>  Airbags</div>
                         <div class="am-box"><i class="fas fa-up-down"></i> 4 Vitres electriques</div>
                         <div class="am-box"><i class="fas fa-road"></i> ABS, ESP</div>
                         <div class="am-box"><i class="fas fa-wifi"></i> Radar de stationnement arriere</div>
@@ -587,10 +691,7 @@
                         <div class="am-box"><i class="fas fa-gamepad"></i> Commandes au volant</div>
                         <div class="am-box"><i class="fab fa-bluetooth"></i> Bluetooth</div>
                         <div class="am-box"><i class="fas fa-bell"></i> Alarme</div>
-                        <div class="am-box"><i class="fas fa-tablet-screen-button"></i> Ecrant tactile</div>
-                        <div class="am-box"><i class="far fa-lightbulb"></i> Feux LED</div>
-                        <div class="am-box"><i class="fas fa-lines-leaning"></i> Aide au maintien de voie</div>
-                        <div class="am-box"><i class="fas fa-wave-square"></i> Vibration volant sortie de trajectoire</div>
+                        <div class="am-box"><i class="fas fa-car-side"></i> Jante alu</div>
                     </div>
 
                     <div class="actions-v2">
@@ -619,14 +720,14 @@
                         <div class="price-badge-round">7000DA/jour dégressif en fonction de la durée et de la saison</div>
                     </div>
                     
-                    <p class="card-desc">Location d'une fiat tipo noir 1.6 essence, avec boite automatique, toutes options. Véhicule récent, parfait état et entiérement équipé pour votre confort et sécurité.</p>
+                    <p class="card-desc">Location d'une fiat tipo blanche 1.6 essence, avec boite automatique. élegance et performance pour tous vos deplacements. Véhicule récent, parfait état équipé pour votre confort et sécurité. Très grand coffre</p>
 
                     <div class="amenities-grid-12">
                         <div class="am-box"><i class="fas fa-gas-pump"></i> 1.6 essence - boite automatique</div>
                         <div class="am-box"><i class="fas fa-gauge-high"></i> Régulateur de vitesse</div>
                         <div class="am-box"><i class="fas fa-snowflake"></i> Climatisation</div>
                         <div class="am-box"><i class="fab fa-usb"></i> Port USB</div>
-                        <div class="am-box"><i class="fas fa-shield-halved"></i> 4 Airbags</div>
+                        <div class="am-box"><i class="fas fa-shield-halved"></i>  Airbags</div>
                         <div class="am-box"><i class="fas fa-up-down"></i> 4 Vitres electriques</div>
                         <div class="am-box"><i class="fas fa-road"></i> ABS, ESP</div>
                         <div class="am-box"><i class="fas fa-wifi"></i> Radar de stationnement arriere</div>
@@ -636,10 +737,6 @@
                         <div class="am-box"><i class="fas fa-gamepad"></i> Commandes au volant</div>
                         <div class="am-box"><i class="fab fa-bluetooth"></i> Bluetooth</div>
                         <div class="am-box"><i class="fas fa-bell"></i> Alarme</div>
-                        <div class="am-box"><i class="fas fa-tablet-screen-button"></i> Ecrant tactile</div>
-                        <div class="am-box"><i class="far fa-lightbulb"></i> Feux LED</div>
-                        <div class="am-box"><i class="fas fa-lines-leaning"></i> Aide au maintien de voie</div>
-                        <div class="am-box"><i class="fas fa-wave-square"></i> Vibration volant sortie de trajectoire</div>
                     </div>
 
                     <div class="actions-v2">
@@ -673,7 +770,7 @@
                         <div class="am-box"><i class="fas fa-gauge-high"></i> Régulateur limitateur de vitesse</div>
                         <div class="am-box"><i class="fas fa-snowflake"></i> Climatisation</div>
                         <div class="am-box"><i class="fab fa-usb"></i> Port USB</div>
-                        <div class="am-box"><i class="fas fa-shield-halved"></i> 4 Airbags</div>
+                        <div class="am-box"><i class="fas fa-shield-halved"></i>  Airbags</div>
                         <div class="am-box"><i class="fas fa-up-down"></i> 2 Vitres electriques</div>
                         <div class="am-box"><i class="fas fa-road"></i> ABS, ESP</div>
                         <div class="am-box"><i class="fas fa-wifi"></i> Radar de stationnement arriere</div>
@@ -687,6 +784,7 @@
                         <div class="am-box"><i class="far fa-lightbulb"></i> Feux LED</div>
                         <div class="am-box"><i class="fas fa-lines-leaning"></i> Aide au maintien de voie</div>
                         <div class="am-box"><i class="fas fa-wave-square"></i> Vibration volant sortie de trajectoire</div>
+                        <div class="am-box"><i class="fas fa-tablet-screen-button"></i> Carplay</div>
                     </div>
 
                     <div class="actions-v2">
@@ -731,7 +829,8 @@
     </section>
 
     <footer>
-        <p>&copy; 2020 Souleymane Location Alger. Excellence et Confort à Alger.</p>
+        <p>&copy; 2016 Souleymane Location Alger. Excellence et Confort à Alger.</p>
+        <p>POWERED BY SITEMAGIQUE.</p>
     </footer>
 
     <script>
